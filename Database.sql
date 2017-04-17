@@ -56,7 +56,7 @@ INSERT INTO `courses` (`cdn`, `term`, `description`, `hours`, `credit`, `rating`
 
 CREATE TABLE `semester_schedules`
 (
-  `ss_id` INT(11) NOT NULL,
+  `ss_id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
   `likes` INT(11) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE `semester_schedules`
 
 CREATE TABLE `long_term_schedules`
 (
-  `lts_id` INT(11) NOT NULL,
+  `lts_id` INT(11) NOT NULL AUTO_INCREMENT,
   `creator_id` INT(11) NOT NULL,
   `name` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
@@ -78,18 +78,18 @@ CREATE TABLE `long_term_schedules`
   FOREIGN KEY (`creator_id`) REFERENCES students(`s_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
-INSERT INTO `long_term_schedules` (`lts_id`, `creator_id`, `name`, `description`, `likes`) VALUES
-(1, 12385, 'schcs', 'schedule for cs students for 4 years', 8),
-(2, 15381, 'schecon', 'schedule for econ students for 4 years', 13),
-(3, 15896, 'schmgmt', 'schedule for management students for 7 years', 10),
-(4, 17891, 'schart', 'schedule for art students for 4 years', 4),
-(5, 19131, 'schpsy', 'schedule for psychology students for 4 years', 1);
+INSERT INTO `long_term_schedules` (`creator_id`, `name`, `description`, `likes`) VALUES
+(12385, 'schcs', 'schedule for cs students for 4 years', 8),
+(15381, 'schecon', 'schedule for econ students for 4 years', 13),
+(15896, 'schmgmt', 'schedule for management students for 7 years', 10),
+(17891, 'schart', 'schedule for art students for 4 years', 4),
+(19131, 'schpsy', 'schedule for psychology students for 4 years', 1);
 
 -- --------------------------------------------------------
 
 CREATE TABLE `instructors`
 (
-  `i_id` INT(6) NOT NULL,
+  `i_id` INT(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `mail` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `major_works` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
@@ -97,12 +97,12 @@ CREATE TABLE `instructors`
   PRIMARY KEY (`i_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
-INSERT INTO `instructors` (`i_id`, `name`, `mail`, `major_works`, `office_phone`) VALUES
-(1, 'Taner Karadaş', 'tanerk@sabanciuniv.edu', 'CS', 1051),
-(2, 'Ayse Kırelli', 'aysekirelli@sabanciuniv.edu', 'Math', 8956),
-(3, 'Özge Şengül Molla', 'ozgemolla@sabanciuniv.edu', 'Hart', 7649),
-(4, 'Ahmet Demirelli', 'ahmetdemirelli@sabanciuniv.edu', 'CS', 9103),
-(5, 'Ayşe Kedioğulları', 'kedicik@sabanciuniv.edu', 'Hum', 6666);
+INSERT INTO `instructors` (`name`, `mail`, `major_works`, `office_phone`) VALUES
+('Taner Karadaş', 'tanerk@sabanciuniv.edu', 'CS', 1051),
+('Ayse Kırelli', 'aysekirelli@sabanciuniv.edu', 'Math', 8956),
+('Özge Şengül Molla', 'ozgemolla@sabanciuniv.edu', 'Hart', 7649),
+('Ahmet Demirelli', 'ahmetdemirelli@sabanciuniv.edu', 'CS', 9103),
+('Ayşe Kedioğulları', 'kedicik@sabanciuniv.edu', 'Hum', 6666);
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,7 @@ CREATE TABLE `teaches`
 
 CREATE TABLE `reviews`
 (
-  `r_id` INT(11) NOT NULL,
+  `r_id` INT(11) NOT NULL AUTO_INCREMENT,
   `review_text` text COLLATE ucs2_unicode_520_ci NOT NULL,
   `course_rating` INT(1) NOT NULL,
   `instructor_rating` INT(1) NOT NULL,
@@ -134,17 +134,17 @@ CREATE TABLE `reviews`
   FOREIGN KEY (`i_id`) REFERENCES `instructors`(`i_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
-INSERT INTO `reviews` (`r_id`, `review_text`, `course_rating`, `instructor_rating`, `cdn`, `term`, `creator_id`, `i_id` ) VALUES
-(1, 'Instructor was so mean',                                       4, 2, 12559, 22, 12385, 4),
-(2, 'Everything was perfect',                                       5, 5, 12559, 22, 12385, 3),
-(3, 'Instructor didn’t let me pass',                                3, 1, 12810, 24, 15130, 1),
-(4, 'Instructor was very nice but the course isn’t',                0, 4, 12810, 24, 15130, 4),
-(5, 'Everything was crap',                                          0, 0, 15738, 24, 15896, 2),
-(6, 'So many homeworks and hard exams :/',                          3, 2, 22716, 19, 17679, 2),
-(7, 'Subject is good but instructor has no energy in the classes',  5, 2, 15738, 24, 15896, 5),
-(8, 'An easy course to increase your GPA',                          4, 5, 12559, 22, 17679, 5),
-(9, 'Avarage course but attandance is a must',                      3, 3, 12810, 24, 19131, 1),
-(10, 'Meh',                                                         2, 2, 22716, 19, 19131, 5);
+INSERT INTO `reviews` (`review_text`, `course_rating`, `instructor_rating`, `cdn`, `term`, `creator_id`, `i_id` ) VALUES
+('Instructor was so mean',                                       4, 2, 12559, 22, 12385, 4),
+('Everything was perfect',                                       5, 5, 12559, 22, 12385, 3),
+('Instructor didn’t let me pass',                                3, 1, 12810, 24, 15130, 1),
+('Instructor was very nice but the course isn’t',                0, 4, 12810, 24, 15130, 4),
+('Everything was crap',                                          0, 0, 15738, 24, 15896, 2),
+('So many homeworks and hard exams :/',                          3, 2, 22716, 19, 17679, 2),
+('Subject is good but instructor has no energy in the classes',  5, 2, 15738, 24, 15896, 5),
+('An easy course to increase your GPA',                          4, 5, 12559, 22, 17679, 5),
+('Avarage course but attandance is a must',                      3, 3, 12810, 24, 19131, 1),
+('Meh',                                                          2, 2, 22716, 19, 19131, 5);
 
 -- --------------------------------------------------------
 
