@@ -15,7 +15,7 @@ Use Cases: See Schedules Assigned, List of Reviews by User
 
 3 - Schedule Search Page
 Description: This page will serve as a catalogue for schedules. Users can find a Semester Schedule or Long Term Schedule here with help of filters such as Diploma Program
-Use Cases: Search Schedule,  Search Long Term Schedules, Assign to a Schedule
+Use Cases: Search Schedule,  Search Long Term Schedules, Assign to a Semester Schedule, Assign to a Long Term Schedule
 
 4 - Schedule Creation Page
 Description: Students will create their schedules here.
@@ -38,6 +38,7 @@ VALUES ( '$name', '$surname', '$mail', '$password' );
 INSERT INTO `students`(`mail`, `password`);
 VALUES ('$mail', '$password' );
 
+
 2.1 -  Review List
 // It’s checks user’s review about it availability and submits it
 //	$s_id : Student’s unique id
@@ -47,23 +48,37 @@ WHERE r.cdn = c.cdn
 AND r.term = c.term
 AND c.creator_id = '$s_id'
 
+
 3.1 - Search Schedule
-//  Checks ids of semester schedules and select it if it’s fit what written in search bar
+//  Searches semester schedules with keywords and orders results by likes
 //	$name_key : Keyword for Name	$descr_key : Keyword for Description
-SELECT ss.name, ss.description, stu.name, stu.surname, stu.mail
-FROM `semester_schedules` AS ss, students AS stu
-Where ss.`name` LIKE '%$name_key%'
+SELECT ss.`name`, ss.`description`, ss.`likes`, stu.`name`, stu.`surname`, stu.`mail`
+FROM `semester_schedules` AS ss, `students` AS stu
+WHERE ss.`name` LIKE '%$name_key%'
 AND ss.`description` LIKE '%$descr_key%'
-AND stu.s_id = ss.creator_id
+AND stu.`s_id` = ss.`creator_id`
+ORDER BY ss.`likes` DESC
 
 3.2 - Search Long Term Schedule
-//  Checks ids of long term schedules and select it if it’s fit what written in search bar
+//  Searches long term schedules with keywords and orders results by likes
 //	$name_key : Keyword for Name	$descr_key : Keyword for Description
-SELECT ss.name, ss.description, stu.name, stu.surname, stu.mail
-FROM `long_term_schedules` AS ss, students AS stu
-Where ss.`name` LIKE '%$name_key%'
-AND ss.`description` LIKE '%$descr_key%'
-AND stu.s_id = ss.creator_id
+SELECT lts.`name`, lts.`description`, lts.`likes`, stu.`name`, stu.`surname`, stu.`mail`
+FROM `long_term_schedules` AS lts, `students` AS stu
+WHERE lts.`name` LIKE '%$name_key%'
+AND lts.`description` LIKE '%$descr_key%'
+AND stu.`s_id` = lts.`creator_id`
+ORDER BY lts.`likes` DESC
+
+3.3 - Assign to a Semester Schedule
+// Assigns a semester schedule to a user
+//	$s_id : Student’s unique id		$ss_id : Semester Schedule’s unique id
+INSERT INTO `s_has_ss` (`s_id`, `ss_id`) VALUES ('$s_id', '$ss_id')
+
+3.4 - Assign to a Long Term Schedule
+// Assigns a long term schedule to a user
+//	$s_id : Student’s unique id		$lts_id : Long Term Schedule’s unique id
+INSERT INTO `s_has_lts` (`s_id`, `lts_id`) VALUES ('$s_id', '$lts_id')
+
 
 4.1 - Creating Semester Schedule
 // Creates a schedule for 1 semester for the user
@@ -78,8 +93,3 @@ VALUES (`$name`, `$descr`, `$creator_id`)
 //	$creator_id : Foreign Key of Student’s Id who creates it
 INSERT INTO `long_term_schedules`(`name`, `description`, `creator_id`)
 VALUES (`$creator_id`, `$name`, `$description`)
-
-4.3 - Assign to a Semester Schedule
-// Let user search and find the specific schedule and let them to assign it for them
-//	$s_id : Student’s unique id		$ss_id : Semester Schedule’s unique id
-INSERT INTO `s_has_ss` (`s_id`, `ss_id`) VALUES ('$s_id', '$ss_id')
