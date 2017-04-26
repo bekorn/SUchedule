@@ -1,3 +1,0 @@
-Berke: 3 tane relation için sql kodu + pdf rapor
-
-Berk: kalan 3 tane relation için sql kodu + pages design /w sql code
