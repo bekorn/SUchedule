@@ -25,22 +25,22 @@ Description: Students will create their schedules here.
 Use Cases
 
 1.1 - Sign Up
-// It’s a sql code for creating an account and signing up. It’s checks if it’s available for
-// signing up or not and then it creates account if it’s appropriate
+> It’s a sql code for creating an account and signing up. It’s checks if it’s available for
+> signing up or not and then it creates account if it’s appropriate
 //	$name : First Name			$surname : Second Name
 //	$mail : Unique SU Mail		$password : Password
 INSERT INTO `students`(`name`, `surname`, `mail`, `password`)
 VALUES ( '$name', '$surname', '$mail', '$password' );
 
 1.2 - Login
-// It checks username and password then let user to login the account
+> It checks username and password then let user to login the account
 //	$mail : Unique SU Mail		$password : Password
 INSERT INTO `students`(`mail`, `password`);
 VALUES ('$mail', '$password' );
 
 
 2.1 -  Review List
-// It’s checks user’s review about it availability and submits it
+> It’s checks user’s review about it availability and submits it
 //	$s_id : Student’s unique id
 SELECT r.review_text, r.course_rating, r.term, s.name, s.surname
 FROM reviews r, courses c,students s
@@ -50,7 +50,7 @@ AND c.creator_id = '$s_id'
 
 
 3.1 - Search Schedule
-//  Searches semester schedules with keywords and orders results by likes
+>  Searches semester schedules with keywords and orders results by likes
 //	$name_key : Keyword for Name	$descr_key : Keyword for Description
 SELECT ss.`name`, ss.`description`, ss.`likes`, stu.`name`, stu.`surname`, stu.`mail`
 FROM `semester_schedules` AS ss, `students` AS stu
@@ -60,7 +60,7 @@ AND stu.`s_id` = ss.`creator_id`
 ORDER BY ss.`likes` DESC
 
 3.2 - Search Long Term Schedule
-//  Searches long term schedules with keywords and orders results by likes
+>  Searches long term schedules with keywords and orders results by likes
 //	$name_key : Keyword for Name	$descr_key : Keyword for Description
 SELECT lts.`name`, lts.`description`, lts.`likes`, stu.`name`, stu.`surname`, stu.`mail`
 FROM `long_term_schedules` AS lts, `students` AS stu
@@ -70,25 +70,25 @@ AND stu.`s_id` = lts.`creator_id`
 ORDER BY lts.`likes` DESC
 
 3.3 - Assign to a Semester Schedule
-// Assigns a semester schedule to a user
+> Assigns a semester schedule to a user
 //	$s_id : Student’s unique id		$ss_id : Semester Schedule’s unique id
 INSERT INTO `s_has_ss` (`s_id`, `ss_id`) VALUES ('$s_id', '$ss_id')
 
 3.4 - Assign to a Long Term Schedule
-// Assigns a long term schedule to a user
+> Assigns a long term schedule to a user
 //	$s_id : Student’s unique id		$lts_id : Long Term Schedule’s unique id
 INSERT INTO `s_has_lts` (`s_id`, `lts_id`) VALUES ('$s_id', '$lts_id')
 
 
 4.1 - Creating Semester Schedule
-// Creates a schedule for 1 semester for the user
+> Creates a schedule for 1 semester for the user
 //	$name : Schedule’s Name		$descr : Description
 //	$creator_id : Foreign Key of Student’s Id who creates it
 INSERT INTO `semester_schedules`(`name`, `description`, `creator_id`)
 VALUES (`$name`, `$descr`, `$creator_id`)
 
 4.2 - Creating Long Term Schedule
-// Creates a long term schedule for user
+> Creates a long term schedule for user
 //	$name : First Name			$descr : Description
 //	$creator_id : Foreign Key of Student’s Id who creates it
 INSERT INTO `long_term_schedules`(`name`, `description`, `creator_id`)

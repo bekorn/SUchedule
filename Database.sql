@@ -1,4 +1,6 @@
 
+--  This file contains all tables, triggers and procedures used in this project.
+
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS;
 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION;
@@ -8,7 +10,7 @@ SET NAMES utf8mb4;
 
 CREATE TABLE `students`
 (
-  `s_id` INT(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `surname` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `mail` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
@@ -20,7 +22,7 @@ CREATE TABLE `students`
 INSERT INTO `students` (`s_id`, `name`, `surname`, `mail`, `password`) VALUES
 (11311, 'Ayse', 'Karabaş', 'aysekarabas@sabanciuniv.edu', 'Buncuk9'),
 (12385, 'Mehmet', 'Okur', 'okur1@sabanciuniv.edu', 'UtahJazZz1'),
-(13856, 'Mehmet', 'Can Erimçağ', 'merimcag@sabanciuniv.edu', 'MemCan2186'),
+(13856, 'Mehmet Can', 'Erimçağ', 'merimcag@sabanciuniv.edu', 'MemCan2186'),
 (15130, 'Mehmet', 'Balibaşa', 'mbalibasa@sabanciuniv.edu', 'MemBal3'),
 (15381, 'Kaan', 'Akyıldız', 'aky@sabanciuniv.edu', 'Reis1995'),
 (15896, 'Ahmet', 'Hıdırellez', 'hidirellez@sabanciuniv.edu', 'Hido123'),
@@ -33,15 +35,15 @@ INSERT INTO `students` (`s_id`, `name`, `surname`, `mail`, `password`) VALUES
 
 CREATE TABLE `courses`
 (
-  `cdn` INT(5) NOT NULL,
-  `term` INT(4) NOT NULL,
+  `cdn` int(5) NOT NULL,
+  `term` int(4) NOT NULL,
   `description` text COLLATE utf8_unicode_520_ci NOT NULL,
-  `hours` INT(2) NOT NULL,
-  `credit` INT(1) NOT NULL,
+  `hours` int(2) NOT NULL,
+  `credit` int(1) NOT NULL,
   `rating` float NOT NULL,
-  `number_of_ratings` INT(11) NOT NULL,
+  `number_of_ratings` int(11) NOT NULL,
   `section` text COLLATE utf8_unicode_520_ci NOT NULL,
-  `section_number` INT(2) NOT NULL,
+  `section_number` int(2) NOT NULL,
   PRIMARY KEY (`cdn`, `term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
@@ -56,27 +58,50 @@ INSERT INTO `courses` (`cdn`, `term`, `description`, `hours`, `credit`, `rating`
 
 CREATE TABLE `semester_schedules`
 (
-  `ss_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ss_id` int(11) NOT NULL AUTO_INCREMENT,
+  `creator_id` int(11) NOT NULL,
+  `created_at` date NOT NULL,
   `name` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
-  `likes` INT(11) NOT NULL,
-  `creator_id` INT(11) NOT NULL,
+  `likes` int(11) NOT NULL,
+
   PRIMARY KEY (`ss_id`),
   FOREIGN KEY (`creator_id`) REFERENCES students(`s_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+
+DELIMITER $$
+CREATE TRIGGER `add_current_date_for_ss` BEFORE INSERT ON `semester_schedules`
+FOR EACH ROW SET new.`created_at` = CURRENT_DATE$$
+DELIMITER ;
+
+--  TODO: add this trigger to erdplus_diagram
+
+INSERT INTO `semester_schedules` (`creator_id`, `created_at`, `name`, `description`, `likes`) VALUES
+(17679, '2014-03-04', 'First Year Introduction', 'Which courses you should take on your freshman year!', 34),
+(17679, '2016-02-05', 'Second Year CS Courses', 'Basics and Mandatories', 26),
+(13856, '2017-01-06', 'ECON & CS Double Major Full', 'A very fined list of courses you should take over 4 years', 8);
 
 -- --------------------------------------------------------
 
 CREATE TABLE `long_term_schedules`
 (
-  `lts_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `creator_id` INT(11) NOT NULL,
+  `lts_id` int(11) NOT NULL AUTO_INCREMENT,
+  `creator_id` int(11) NOT NULL,
+  `created_at` date NOT NULL,
   `name` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
-  `likes` INT(11) NOT NULL,
+  `likes` int(11) NOT NULL,
+
   PRIMARY KEY (`lts_id`),
   FOREIGN KEY (`creator_id`) REFERENCES students(`s_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+
+DELIMITER $$
+CREATE TRIGGER `add_current_date_for_lts` BEFORE INSERT ON `long_term_schedules`
+FOR EACH ROW SET new.`created_at` = CURRENT_DATE$$
+DELIMITER ;
+
+--  TODO: add this trigger to erdplus_diagram
 
 INSERT INTO `long_term_schedules` (`creator_id`, `name`, `description`, `likes`) VALUES
 (12385, 'schcs', 'schedule for cs students for 4 years', 8),
@@ -89,11 +114,11 @@ INSERT INTO `long_term_schedules` (`creator_id`, `name`, `description`, `likes`)
 
 CREATE TABLE `instructors`
 (
-  `i_id` INT(6) NOT NULL AUTO_INCREMENT,
+  `i_id` int(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `mail` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `major_works` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
-  `office_phone` INT(4) NOT NULL,
+  `office_phone` int(4) NOT NULL,
   PRIMARY KEY (`i_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
@@ -108,9 +133,9 @@ INSERT INTO `instructors` (`name`, `mail`, `major_works`, `office_phone`) VALUES
 
 CREATE TABLE `teaches`
 (
-  `i_id` INT(11) NOT NULL,
-  `cdn` INT(11) NOT NULL,
-  `term` INT(11) NOT NULL,
+  `i_id` int(11) NOT NULL,
+  `cdn` int(11) NOT NULL,
+  `term` int(11) NOT NULL,
   PRIMARY KEY (`i_id`, `cdn`, `term`),
   FOREIGN KEY (`i_id`) REFERENCES `instructors`(`i_id`),
   FOREIGN KEY (`cdn`, `term`) REFERENCES courses(`cdn`, `term`)
@@ -120,14 +145,14 @@ CREATE TABLE `teaches`
 
 CREATE TABLE `reviews`
 (
-  `r_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
   `review_text` text COLLATE ucs2_unicode_520_ci NOT NULL,
-  `course_rating` INT(1) NOT NULL,
-  `instructor_rating` INT(1) NOT NULL,
-  `cdn` INT(5) NOT NULL,
-  `term` INT(4) NOT NULL,
-  `creator_id` INT(11) NOT NULL,
-  `i_id` INT(6) NOT NULL,
+  `course_rating` int(1) NOT NULL,
+  `instructor_rating` int(1) NOT NULL,
+  `cdn` int(5) NOT NULL,
+  `term` int(4) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `i_id` int(6) NOT NULL,
   PRIMARY KEY (`r_id`),
   FOREIGN KEY (`cdn`, `term`) REFERENCES `courses`(`cdn`, `term`),
   FOREIGN KEY (`creator_id`) REFERENCES `students`(`s_id`),
@@ -150,8 +175,8 @@ INSERT INTO `reviews` (`review_text`, `course_rating`, `instructor_rating`, `cdn
 
 CREATE TABLE `lts_contains_ss`
 (
-  `lts_id` INT(11) NOT NULL,
-  `ss_id` INT(11) NOT NULL,
+  `lts_id` int(11) NOT NULL,
+  `ss_id` int(11) NOT NULL,
   PRIMARY KEY (`lts_id`, `ss_id`),
   FOREIGN KEY (`lts_id`) REFERENCES `long_term_schedules`(`lts_id`),
   FOREIGN KEY (`ss_id`) REFERENCES `semester_schedules`(`ss_id`)
@@ -161,8 +186,8 @@ CREATE TABLE `lts_contains_ss`
 
 CREATE TABLE `lts_has_s`
 (
-  `lts_id` INT(11) NOT NULL,
-  `s_id` INT(11) NOT NULL,
+  `lts_id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
   PRIMARY KEY (`lts_id`, `s_id`),
   FOREIGN KEY (`lts_id`) REFERENCES `long_term_schedules`(`lts_id`),
   FOREIGN KEY (`s_id`) REFERENCES `students`(`s_id`)
@@ -172,8 +197,8 @@ CREATE TABLE `lts_has_s`
 
 CREATE TABLE `s_has_ss`
 (
-  `s_id` INT(11) NOT NULL,
-  `ss_id` INT(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `ss_id` int(11) NOT NULL,
   PRIMARY KEY (`s_id`, `ss_id`),
   FOREIGN KEY (`s_id`) REFERENCES `semester_schedules`(`ss_id`),
   FOREIGN KEY (`ss_id`) REFERENCES `students`(`s_id`)
@@ -183,10 +208,69 @@ CREATE TABLE `s_has_ss`
 
 CREATE TABLE `ss_contains_c`
 (
-  `ss_id` INT(11) NOT NULL,
-  `cdn` INT(11) NOT NULL,
-  `term` INT(11) NOT NULL,
+  `ss_id` int(11) NOT NULL,
+  `cdn` int(11) NOT NULL,
+  `term` int(11) NOT NULL,
   PRIMARY KEY (`ss_id`, `cdn`, `term`),
   FOREIGN KEY (`ss_id`) REFERENCES `semester_schedules`(`ss_id`),
   FOREIGN KEY (`cdn`, `term`) REFERENCES `courses`(`cdn`, `term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+
+
+--  END OF TABLES
+
+--  VIEWS
+
+/*  This will show SSs and LTSs together chronologically  */
+DELIMITER //
+
+CREATE VIEW `latest_schedules` AS
+
+SELECT false AS `is_long`, ss.`ss_id` AS `id`, ss.`name`, ss.`description`, ss.`likes`, ss.`created_at`, stu.`s_id`, stu.`name` AS `s_name`, stu.`surname` AS `s_surname`
+FROM `semester_schedules` ss, `students` stu
+WHERE stu.`s_id` = ss.`creator_id`
+
+UNION
+
+SELECT true AS `is_long`, lts.`lts_id` AS `id`, lts.`name`, lts.`description`, lts.`likes`, lts.`created_at`, stu.`s_id`, stu.`name` AS `s_name`, stu.`surname` AS `s_surname`
+FROM `long_term_schedules` lts, `students` stu
+WHERE stu.`s_id` = lts.`creator_id`
+
+ORDER BY `created_at` DESC//
+
+DELIMITER ;
+
+
+
+
+--  PROCEDURES
+
+/*  Returns SSs created by specific user  */
+# DELIMITER //
+#
+# CREATE PROCEDURE search_for_student ( _sid int(11) )
+# BEGIN
+#   IF
+# SELECT
+# FROM
+# WHERE ;
+# END//
+#
+# DELIMITER ;
+
+/*  Gets the latest created 20 Semester Schedules and Long Term Schedules combines together
+
+(
+SELECT false AS `is_long`, `semester_schedules`.`ss_id` AS `id`, `semester_schedules`.`name`, `semester_schedules`.`description`, `semester_schedules`.`likes`, `semester_schedules`.`created_at`, `students`.`name`, `students`.`surname`
+FROM `semester_schedules`, `students`
+WHERE `students`.`s_id` = `semester_schedules`.`creator_id`
+LIMIT 20
+)
+UNION
+(
+SELECT true AS `is_long`, `long_term_schedules`.`lts_id` AS `id`, `long_term_schedules`.`name`, `long_term_schedules`.`description`, `long_term_schedules`.`likes`, `long_term_schedules`.`created_at`, `students`.`name`, `students`.`surname`
+FROM `long_term_schedules`, `students`
+WHERE `students`.`s_id` = `long_term_schedules`.`creator_id`
+)
+ORDER BY `created_at` DESC
+LIMIT 20
