@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} ()
+RewriteRule () Source/View/index.php
+
+
+#.php extension should be hidden
