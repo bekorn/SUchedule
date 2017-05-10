@@ -1,7 +1,6 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_URI} ()
-RewriteRule () Source/View/index.php
-
+RewriteCond %{REQUEST_URI} !(\.css)$
+RewriteRule (.*) Source/View/index.php
 
 #.php extension should be hidden

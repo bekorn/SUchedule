@@ -2,11 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: Berk
- * Date: 08.05.2017
- * Time: 14:11
+ * Date: 09.05.2017
+ * Time: 17:40
  */
 
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -18,7 +19,7 @@
 
     <link rel="stylesheet" href="<?=__LINK_DIR__?>/Style/Compiled/style.css">
 
-    <title>Profile</title>
+    <title>Search</title>
 </head>
 <body class="row">
 
@@ -26,9 +27,9 @@
 
 <div class="col center">
 
-    <div class="row" id="container">
+    <div class="row container">
 
-        <h1>Burası Profil</h1>
+        Search
 
     </div>
 

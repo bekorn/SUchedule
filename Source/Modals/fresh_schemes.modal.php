@@ -13,27 +13,53 @@ $result = $mysqli->query( $sql );
 
 ?>
 
+<div class="col">
 
-<ul>
+    <div class="row">
 
-    <?php if( $result != NULL ) : ?>
+        <h2>Latest Schedules</h2>
 
-        <?php while( $row = $result->fetch_assoc() ) : ?>
+        <div class="schedule_list">
 
-            <li>
+            <?php if( $result != NULL ) : ?>
 
-            <?php foreach( $row as $key => $val ) : ?>
+                <?php while( $row = $result->fetch_assoc() ) : ?>
 
-                <?php if( $key != 's_id' ) : ?>
-                    <?=$val?>
-                <?php endif; ?>
+                    <div>
 
-            <?php endforeach; ?>
+                    <?php foreach( $row as $key => $val ) : ?>
 
-            </li>
+                        <?php switch( $key ) {
 
-        <?php endwhile; ?>
+                            case 'is_long' :
+                                if( $val ) {
+                                    echo "LTS :";
+                                }
+                                else {
+                                    echo "SS :";
+                                }
+                                break;
+                            case 's_id' :
+                            case 'id' :
+                                break;
+                            case "name" :
+                                echo "<b>{$val}</b> <br>";
+                                break;
+                            default :
+                                echo $val;
+                        }
+                        ?>
 
-    <?php endif; ?>
+                    <?php endforeach; ?>
 
-</ul>
+                    </div>
+
+                <?php endwhile; ?>
+
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+</div>

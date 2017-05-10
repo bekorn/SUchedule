@@ -8,20 +8,22 @@
 
 ?>
 
+<div class="col center" id="header">
 
-<ul id="header">
+    <div class="row container">
 
-    <li>
-        <a href="<?=__LINK_DIR__?>/main.php">Home</a>
-    </li>
-    <li>
-        <a href="<?=__LINK_DIR__?>/schedules.php" target="_self">Schedules</a>
-    </li>
-    <li>
-        <a href="<?=__LINK_DIR__?>/profile.php">Profile</a>
-    </li>
-    <li>
-        <a href="<?=__LINK_DIR__?>/my_schedule.php" target="_self">My Schedule</a>
-    </li>
+        <div class="col" id="header_menu">
 
-</ul>
+            <a href="<?=__LINK_DIR__?>/View/home">Home</a>
+
+            <a href="<?=__LINK_DIR__?>/View/profile">Profile</a>
+
+            <a href="<?=__LINK_DIR__?>/View/search">Search</a>
+
+            <a href="<?=__LINK_DIR__?>/View/my_schedule">My Schedule</a>
+
+        </div>
+
+    </div>
+
+</div>

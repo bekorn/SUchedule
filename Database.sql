@@ -168,7 +168,7 @@ INSERT INTO `reviews` (`review_text`, `course_rating`, `instructor_rating`, `cdn
 ('So many homeworks and hard exams :/',                          3, 2, 22716, 19, 17679, 2),
 ('Subject is good but instructor has no energy in the classes',  5, 2, 15738, 24, 15896, 5),
 ('An easy course to increase your GPA',                          4, 5, 12559, 22, 17679, 5),
-('Avarage course but attandance is a must',                      3, 3, 12810, 24, 19131, 1),
+('Avarage course but attendance is a must',                      3, 3, 12810, 24, 19131, 1),
 ('Meh',                                                          2, 2, 22716, 19, 19131, 5);
 
 -- --------------------------------------------------------

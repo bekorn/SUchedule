@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Berkshire+Swash");
+@import url("https://fonts.googleapis.com/css?family=Oxygen");
+@import url("https://fonts.googleapis.com/css?family=Karma:300,400,500,600,700");
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -6,6 +9,107 @@
   padding: 0; }
 
 body {
-  font-size: 16px; }
+  display: flex;
+  background-color: #333;
+  font-family: "Karma", serif;
+  font-size: 14px; }
+  @media (min-width: 480px) {
+    body {
+      font-size: 16px; } }
+
+a {
+  color: #2980b9;
+  text-decoration: none; }
+  a:hover {
+    color: #3498db; }
+
+span {
+  font-size: 0.75em; }
+
+.container {
+  flex-basis: 100%;
+  background-color: #eee; }
+  @media (min-width: 768px) {
+    .container {
+      flex-basis: 668px; } }
+  @media (min-width: 1200px) {
+    .container {
+      flex-basis: 1000px; } }
+
+.row {
+  display: flex;
+  flex-direction: column; }
+
+.col {
+  display: flex;
+  flex-direction: row; }
+
+.wrap {
+  flex-wrap: wrap; }
+
+.center {
+  justify-content: center; }
+
+.center-text {
+  text-align: center; }
+
+#header {
+  background-color: #2980b9; }
+  #header .container {
+    background-color: inherit; }
+
+.main {
+  padding: 0 15px;
+  padding-bottom: 15px; }
+
+.info_box {
+  flex: 1 1 100%;
+  margin: 5px;
+  background-color: white;
+  border-collapse: collapse;
+  border-radius: 15px;
+  padding: 25px 0;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 500; }
+  @media (min-width: 768px) {
+    .info_box {
+      flex: 1 1 309px; } }
+  @media (min-width: 1200px) {
+    .info_box {
+      flex: 1 1 313.33333px; } }
+  .info_box > h3 {
+    font-family: "Oxygen", sans-serif;
+    margin-bottom: 10px; }
+
+.info_table {
+  width: calc( 100% + 6px );
+  margin: 0 -3px;
+  border-spacing: 3px;
+  background-color: #eee;
+  font-weight: inherit;
+  font-size: 1em; }
+  .info_table td, .info_table tr {
+    padding: 10px;
+    text-align: center; }
+  .info_table td {
+    min-width: 80px;
+    background-color: white; }
+
+#header_menu {
+  user-select: none; }
+  #header_menu a {
+    display: flex;
+    flex-basis: 120px;
+    padding: 10px;
+    justify-content: center;
+    font-family: "Oxygen", sans-serif;
+    color: ghostwhite;
+    border-right: 3px solid rgba(0, 0, 0, 0.1);
+    transition: 0.3s all ease-in-out; }
+    #header_menu a:hover {
+      box-shadow: inset 0 -3px 0 ghostwhite; }
+  #header_menu a:last-of-type {
+    border-right: unset; }
 
 /*# sourceMappingURL=style.css.map */
