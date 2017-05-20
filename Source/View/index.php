@@ -10,12 +10,19 @@
 define( '__PROJECT_DIR__', 'C:/wamp64/www/betterweb' );
 define( '__LINK_DIR__', '/betterweb/Source' );
 
+//  Include another php file with parameters
+function insert( $file, $args = [] ) {
+
+    extract( $args );
+    return include __PROJECT_DIR__ . $file;
+}
+
 
 //  Connect to server
-$mysqli = include __PROJECT_DIR__ . "/Source/Helpers/connector.php";
+$mysqli = insert( "/Source/Helpers/connector.php" );
 
 
-//  Routing will be done here
+//  Parse the Path
 $path = parse_url( $_SERVER['REQUEST_URI'] )['path'];
 $path = array_slice( explode( '/', $path ), 4 );
 
