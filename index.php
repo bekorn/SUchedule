@@ -27,9 +27,8 @@ $mysqli = insert( "/Source/Helper/connector.php" );
 $path = parse_url( $_SERVER['REQUEST_URI'] )['path'];
 $path = array_slice( explode( '/', $path ), 2 );
 
-var_dump( $path );
+//var_dump( $path );
 
-var_dump( pathinfo( $path[0], PATHINFO_EXTENSION ) );
 
 switch( $path[0] ) {
 
