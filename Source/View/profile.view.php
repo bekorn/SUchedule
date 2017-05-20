@@ -11,11 +11,11 @@
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modals/header_tag.php", ['title' => 'Profile']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Profile']) ?>
 
 <body class="row">
 
-<?php include __PROJECT_DIR__ . "/Source/Modals/header.modal.php" ?>
+<?php include __PROJECT_DIR__ . "/Source/Modal/header.modal.php" ?>
 
 <div class="col center">
 

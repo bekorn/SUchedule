@@ -9,6 +9,7 @@
 //  Global File Path Definitions
 define( '__PROJECT_DIR__', 'C:/wamp64/www/betterweb' );
 define( '__LINK_DIR__', '/betterweb/Source' );
+define( '__VIEW_LINK__', '/betterweb/');
 
 //  Include another php file with parameters
 function insert( $file, $args = [] ) {
@@ -19,31 +20,33 @@ function insert( $file, $args = [] ) {
 
 
 //  Connect to server
-$mysqli = insert( "/Source/Helpers/connector.php" );
+$mysqli = insert( "/Source/Helper/connector.php" );
 
 
 //  Parse the Path
 $path = parse_url( $_SERVER['REQUEST_URI'] )['path'];
-$path = array_slice( explode( '/', $path ), 4 );
+$path = array_slice( explode( '/', $path ), 2 );
 
-//var_dump( $path );
+var_dump( $path );
+
+var_dump( pathinfo( $path[0], PATHINFO_EXTENSION ) );
 
 switch( $path[0] ) {
 
     case '':
-    case 'index.php':
     case 'home':
-        include __PROJECT_DIR__ . "/Source/View/home.php";
+    case 'home.view.php':
+        insert( "/Source/View/home.view.php", ['mysqli' => $mysqli] );
         break;
     case 'profile':
-        include __PROJECT_DIR__ . "/Source/View/profile.php";
+        insert( "/Source/View/profile.view.php", ['mysqli' => $mysqli] );
         break;
     case 'search':
-        include __PROJECT_DIR__ . "/Source/View/search.php";
+        insert( "/Source/View/search.view.php", ['mysqli' => $mysqli] );
         break;
     case 'my_schedule':
-        include __PROJECT_DIR__ . "/Source/View/in_development.php";
+        insert( "/Source/View/in_development.view.php", ['mysqli' => $mysqli] );
         break;
     default:
-        include __PROJECT_DIR__ . "/Source/View/404.php";
+        insert( "/Source/View/404.view.php" );
 }

@@ -12,11 +12,11 @@
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modals/header_tag.php", ['title' => 'Search']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Search']) ?>
 
 <body class="row">
 
-<?php insert( "/Source/Modals/header.modal.php" ) ?>
+<?php insert( "/Source/Modal/header.modal.php" ) ?>
 
 <div class="col center">
 

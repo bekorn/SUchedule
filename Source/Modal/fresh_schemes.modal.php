@@ -6,6 +6,9 @@
  * Time: 01:16
  */
 
+/** Arguments   **/
+$mysqli;
+
 
 $sql = 'SELECT *
         FROM latest_schedules';

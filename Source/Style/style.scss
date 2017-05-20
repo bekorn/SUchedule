@@ -15,9 +15,12 @@ $info_box_lg : ($container_lg - 6*$info_box_gutter) / 3;
 $info_box_md : ($container_md - 5*$info_box_gutter)  / 2;
 $info_box_mo : $container_mo;
 
-$content_bg : #eee;
-$info_box_bg : white;
 $corner_radius : 15px;
+$info_box_bg : ghostwhite;
+$content_bg : #eee;
+$negative_font_color : ghostwhite;
+$theme_color_light : #2980b9;
+$theme_color_dark : #3498db;
 
 @import url("https://fonts.googleapis.com/css?family=Berkshire+Swash");
 @import url("https://fonts.googleapis.com/css?family=Oxygen");
@@ -36,7 +39,7 @@ $title_font : 'Berkshire Swash', cursive;
 }
 
 body {
-  display: flex;
+  min-height: 100vh;
   background-color: #333;
   font-family: $text_font;
   font-size: 14px;
@@ -83,6 +86,10 @@ span {
   flex-direction: row;
 }
 
+.full {
+  flex-grow: 1;
+}
+
 .wrap {
   flex-wrap: wrap;
 }
@@ -95,13 +102,11 @@ span {
   text-align: center;
 }
 
-#header {
-  background-color: #2980b9;
-
-  & .container {
-    background-color: inherit;
-  }
+.hidden {
+  display: none;
 }
+
+//  End of Structural classes
 
 .main {
   padding: 0 $info_box_gutter*1.5;
@@ -157,28 +162,50 @@ span {
 }
 
 //  header.module
-#header_menu {
-  user-select: none;
+#header {
+  margin-bottom: 10px;
+  background-color: #2980b9;
 
-  & a {
+  & .container {
+    background-color: inherit;
+  }
+}
+
+#header_menu {
+  flex-basis: 36px;
+  user-select: none;
+  background-color: #3498db;
+
+  & > * {
     display: flex;
     flex-basis: 120px;
-    padding: 10px;
     justify-content: center;
+    align-items: center;
 
     font-family: $header_font;
-    color: ghostwhite;
+    font-size: inherit;
+    color: $negative_font_color;
+    background-color: inherit;
     border-right: 3px solid rgba(0,0,0, 0.1);
 
     transition: 0.3s all ease-in-out;
 
     &:hover {
-      box-shadow: inset 0 -3px 0 ghostwhite;
+      box-shadow: inset 0 -3px 0 $negative_font_color;
     }
   }
 
-  & a:last-of-type {
+  & > a:last-of-type {
     border-right: unset;
+  }
+
+  & > button {
+    border: none;
+    margin-left: auto;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 

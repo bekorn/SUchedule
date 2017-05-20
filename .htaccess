@@ -1,6 +1,13 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_URI} !(\.css)$
-RewriteRule (.*) Source/View/index.php
+RewriteRule ^(\w*)$ index.php [NC] [L]
+RewriteRule ^Helper/(\w+\.php)$ Source/Helper/$1 [NC] [L]
+RewriteRule ^Source/Style/(\w+\.css)$ Source/Style/$1 [NC] [L]
+RewriteRule ^Media/(\w+\.png)$ Source/Media/$1 [NC] [L]
+RewriteRule ^Media/(\w+\.jpg)$ Source/Media/$1 [NC] [L]
+RewriteRule ^(\.view\.php)$ $1 [NC] [L]
 
-#.php extension should be hidden
+# If nt any of these links cath it, then
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]

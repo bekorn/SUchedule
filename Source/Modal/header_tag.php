@@ -6,6 +6,9 @@
  * Time: 02:56
  */
 
+/**  Arguments   **/
+$title; //  Title of the Page
+
 ?>
 
 <head>
