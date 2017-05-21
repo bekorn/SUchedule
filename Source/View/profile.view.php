@@ -15,11 +15,11 @@
 
 <body class="row">
 
-<?php include __PROJECT_DIR__ . "/Source/Modal/header.modal.php" ?>
+<?php insert( "/Source/Modal/header.modal.php" ) ?>
 
-<div class="col center">
+<div class="full col center">
 
-    <div class="row" id="container">
+    <div class="row container">
 
         <h1>Burası Profil</h1>
 

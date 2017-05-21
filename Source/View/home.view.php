@@ -2,12 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: Berk
- * Date: 06.05.2017
- * Time: 02:13
+ * Date: 21.05.2017
+ * Time: 08:57
  */
 
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -22,7 +21,7 @@
 
     <div class="row container">
 
-        <?php insert( "/Source/Modal/fresh_schemes.modal.php", ['mysqli' => $mysqli] ) ?>
+        <h2>Welcome Home</h2>
 
     </div>
 

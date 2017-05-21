@@ -6,6 +6,10 @@
  * Time: 13:49
  */
 
+session_start();
+
+//var_dump($_SESSION)
+
 ?>
 
 <div class="col center" id="header">
@@ -14,25 +18,54 @@
 
         <div class="col" id="header_menu">
 
-            <a href="<?=__VIEW_LINK__?>home">Home</a>
+            <a href="<?=__VIEW_LINK__?>home"><h3>BetterWeb</h3></a>
 
-            <a href="<?=__VIEW_LINK__?>profile">Profile</a>
+            <a href="<?=__VIEW_LINK__?>fresh">Fresh</a>
 
-            <a href="<?=__VIEW_LINK__?>search">Search</a>
+            <a class="menu_divider" href="<?=__VIEW_LINK__?>search">Search</a>
 
-            <a href="<?=__VIEW_LINK__?>my_schedule">My Schedule</a>
+            <?php if( empty($_SESSION['user_id']) ): ?>
 
-            <button id="login_form_toggler">Login</button>
+                <button id="login_form_toggler" class="on_right" type="button">Login</button>
 
-            <form class="login_form" action="<?=__VIEW_LINK__?>Helper/login.php" method="POST">
+                <!--    Login Form      -->
 
-                <label for="username">Username</label>
-                <input name="username" id="username" type="text">
+                <form class="login_form" action="<?=__VIEW_LINK__?>Helper/login" method="POST">
 
-                <label for="password">Password</label>
-                <input name="password" id="password" type="password">
+                    <button id="register_form_toggler" type="button">Not a Member Yet?</button>
 
-                <button type="submit">Register</button>
+                    <label for="mail">E-Mail</label>
+                    <input name="mail" id="mail" type="email">
+
+                    <label for="password">Password</label>
+                    <input name="password" id="password" type="password">
+
+                    <input type="submit" value="Login"></input>
+
+                </form>
+
+                <!--    Register Form      -->
+
+                <form class="register_form" action="<?=__VIEW_LINK__?>Helper/register" method="POST">
+
+                    <label for="name">First Name</label>
+                    <input name="name" id="name" type="text">
+
+                    <label for="surname">Second Name</label>
+                    <input name="surname" id="surname" type="text">
+
+                    <label for="mail">E-Mail</label>
+                    <input name="mail" id="mail" type="email">
+
+                    <label for="student_number">student_number</label>
+                    <input name="student_number" id="student_number" type="number">
+
+                    <label for="password">Password</label>
+                    <input name="password" id="password" type="password">
+
+                    <input type="submit" value="Register"></input>
+
+                </form>
 
                 <script type="text/javascript">
 
@@ -49,9 +82,30 @@
                         }
                     });
 
+                    $('#register_form_toggler').click( function() {
+
+                        $('.register_form').addClass("active");
+                    } );
+
+                    $(document).mousedown( function(event) {
+
+                        if( !$(event.target).closest('.register_form').length ) {
+
+                            $('.register_form').removeClass("active");
+                        }
+                    });
+
                 </script>
 
-            </form>
+            <?php else: ?>
+
+                <a class="on_right" href="<?=__VIEW_LINK__?>profile">Profile</a>
+
+                <a href="<?=__VIEW_LINK__?>my_schedule">My Schedule</a>
+
+                <a href="<?=__VIEW_LINK__?>Helper/logout">Log Out</a>
+
+            <?php endif ?>
 
         </div>
 

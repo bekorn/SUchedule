@@ -12,7 +12,8 @@ body {
   min-height: 100vh;
   background-color: #333;
   font-family: "Karma", serif;
-  font-size: 14px; }
+  font-size: 14px;
+  color: #222; }
   @media (min-width: 480px) {
     body {
       font-size: 16px; } }
@@ -62,7 +63,7 @@ a {
 span {
   font-size: 0.75em; }
 
-button {
+button, input[type="submit"] {
   cursor: pointer;
   align-items: center;
   justify-content: center; }
@@ -71,40 +72,55 @@ button {
   padding: 0 15px;
   padding-bottom: 15px; }
 
-.info_box {
-  flex: 1 1 100%;
-  margin: 5px;
-  background-color: ghostwhite;
+/*
+.info_box{
+  flex: 1 1 $info_box_mo;
+
+  @media (min-width: $medium_view){
+    flex: 1 1 $info_box_md;
+  }
+
+  @media (min-width: $large_view){
+    flex: 1 1 $info_box_lg;
+  }
+
+  margin: $info_box_gutter / 2;
+
+  background-color: $info_box_bg;
   border-collapse: collapse;
-  border-radius: 15px;
-  padding: 25px 0;
+  border-radius: $corner_radius;
+  padding: $corner_radius+10px 0;
+
   text-align: center;
   font-size: 1em;
-  font-weight: 500; }
-  @media (min-width: 768px) {
-    .info_box {
-      flex: 1 1 309px; } }
-  @media (min-width: 1200px) {
-    .info_box {
-      flex: 1 1 313.33333px; } }
-  .info_box > h3 {
-    font-family: "Oxygen", sans-serif;
-    margin-bottom: 10px; }
+  font-weight: 500;
+
+  & > h3 {
+    font-family: $header_font;
+    margin-bottom: 10px;
+  }
+}
 
 .info_table {
   width: calc( 100% + 6px );
   margin: 0 -3px;
-  border-spacing: 3px;
-  background-color: #eee;
-  font-weight: inherit;
-  font-size: 1em; }
-  .info_table td, .info_table tr {
-    padding: 10px;
-    text-align: center; }
-  .info_table td {
-    min-width: 80px;
-    background-color: ghostwhite; }
 
+  border-spacing: 3px;
+  background-color: $content_bg;
+  font-weight: inherit;
+  font-size: 1em;
+
+  & td, & tr {
+    padding: 10px;
+    text-align: center;
+  }
+
+  & td {
+    min-width: 80px;
+    background-color: $info_box_bg;
+  }
+}
+*/
 #header {
   margin-bottom: 10px;
   background-color: #2980b9; }
@@ -127,44 +143,55 @@ button {
     background-color: inherit;
     border-right: 3px solid rgba(0, 0, 0, 0.1);
     transition: 0.3s all ease-in-out; }
-    #header_menu > *:not(.login_form):hover {
+    #header_menu > *:not(.login_form):not(.register_form):not(.login_form):hover {
       box-shadow: inset 0 -3px 0 ghostwhite; }
     #header_menu > *:focus {
       outline: none; }
-  #header_menu > *:last-of-type {
+  #header_menu > .menu_divider, #header_menu > :last-child, #header_menu > form {
     border-right: unset; }
-  #header_menu > button {
-    border: none;
-    margin-left: auto; }
-  #header_menu > .login_form {
-    margin-left: auto;
+  #header_menu > .menu_divider {
+    margin-right: auto; }
+  #header_menu button {
+    flex-basis: 240px;
+    border: none; }
+  #header_menu > .login_form, #header_menu > .register_form, #header_menu > .login_form {
     position: absolute;
     right: 0;
     top: 0;
-    width: 120px;
+    width: 240px;
     transform: translateY(-100%); }
-  #header_menu > .login_form.active {
-    transform: translateY(0); }
+    #header_menu > .login_form.active, #header_menu > .register_form.active, #header_menu > .active.login_form {
+      transform: translateY(0);
+      box-shadow: 0 6px 24px -6px #444444; }
 
-.login_form {
+.register_form, .login_form {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   background-color: inherit;
-  padding: 5px;
-  padding-top: 20px; }
-  .login_form > * {
+  padding: 10px;
+  padding-top: 18px; }
+  .register_form > *, .login_form > * {
     display: flex;
     height: 36px;
     align-items: center;
     width: 100%; }
-  .login_form > label {
+  .register_form > label, .login_form > label {
     justify-content: center; }
-  .login_form > input {
-    margin-bottom: 5px;
-    font-family: inherit; }
-  .login_form > button {
-    margin-top: 5px;
-    text-align: center; }
+  .register_form > input, .login_form > input {
+    margin-bottom: 8px;
+    font-family: inherit;
+    height: 1.8em;
+    padding: 0 10px;
+    border: none; }
+    .register_form > input[type="submit"], .login_form > input[type="submit"] {
+      margin: 10px 40px;
+      margin-bottom: 5px; }
+
+.login_form > button {
+  margin-bottom: 18px;
+  background-color: ghostwhite;
+  color: #222;
+  font-style: italic; }
 
 /*# sourceMappingURL=style.css.map */

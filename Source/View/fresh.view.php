@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Berk
- * Date: 09.05.2017
- * Time: 17:40
+ * Date: 06.05.2017
+ * Time: 02:13
  */
 
 ?>
@@ -11,7 +11,7 @@
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Search']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Fresh Schemes']) ?>
 
 <body class="row">
 
@@ -21,7 +21,7 @@
 
     <div class="row container">
 
-        Search
+        <?php insert( "/Source/Modal/fresh_schemes.modal.php", ['mysqli' => $mysqli] ) ?>
 
     </div>
 

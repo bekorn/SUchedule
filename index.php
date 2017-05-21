@@ -34,8 +34,10 @@ switch( $path[0] ) {
 
     case '':
     case 'home':
-    case 'home.view.php':
         insert( "/Source/View/home.view.php", ['mysqli' => $mysqli] );
+        break;
+    case 'fresh':
+        insert( "/Source/View/fresh.view.php", ['mysqli' => $mysqli] );
         break;
     case 'profile':
         insert( "/Source/View/profile.view.php", ['mysqli' => $mysqli] );

@@ -16,9 +16,11 @@ $info_box_md : ($container_md - 5*$info_box_gutter)  / 2;
 $info_box_mo : $container_mo;
 
 $corner_radius : 15px;
+
 $info_box_bg : ghostwhite;
 $content_bg : #eee;
-$negative_font_color : ghostwhite;
+$text_color : #222;
+$negative_text_color : ghostwhite;
 $theme_color_light : #2980b9;
 $theme_color_dark : #3498db;
 
@@ -43,6 +45,7 @@ body {
   background-color: #333;
   font-family: $text_font;
   font-size: 14px;
+  color: $text_color;
 
   @media( min-width : $mobile-view ) {
     font-size: 16px;
@@ -100,11 +103,11 @@ script {
 }
 
 a {
-  color: #2980b9;
+  color: $theme_color_light;
   text-decoration: none;
 
   &:hover{
-    color: #3498db;
+    color: $theme_color_dark;
   }
 }
 
@@ -112,7 +115,7 @@ span {
   font-size: 0.75em;
 }
 
-button {
+button, input[type="submit"] {
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -123,6 +126,8 @@ button {
   padding-bottom: $info_box_gutter*1.5;
 }
 
+// Unused Modules
+/*
 .info_box{
   flex: 1 1 $info_box_mo;
 
@@ -170,9 +175,11 @@ button {
     background-color: $info_box_bg;
   }
 }
+*/
 
-//  header.module
+//  header.modal
 $header_height : 36px;
+$header_menu_item_width : 120px;
 #header {
   margin-bottom: 10px;
   background-color: #2980b9;
@@ -190,20 +197,20 @@ $header_height : 36px;
 
   & > * {
     display: flex;
-    flex-basis: 120px;
+    flex-basis: $header_menu_item_width;
     justify-content: center;
     align-items: center;
 
     font-family: $header_font;
     font-size: inherit;
-    color: $negative_font_color;
+    color: $negative_text_color;
     background-color: inherit;
     border-right: 3px solid rgba(0,0,0, 0.1);
 
     transition: 0.3s all ease-in-out;
 
-    &:not( .login_form ):hover {
-      box-shadow: inset 0 -3px 0 $negative_font_color;
+    &:not( .login_form ):not( .register_form ):hover {
+      box-shadow: inset 0 -3px 0 $negative_text_color;
     }
 
     &:focus {
@@ -211,39 +218,41 @@ $header_height : 36px;
     }
   }
 
-  & > *:last-of-type {
+  & > .menu_divider, & > :last-child, & > form {
     border-right: unset;
   }
 
-  & > button{
-    border: none;
-    margin-left: auto;
+  & > .menu_divider {
+    margin-right: auto;
   }
 
-  & > .login_form {
-    margin-left: auto;
+  & button {
+    flex-basis: 2* $header_menu_item_width;
+    border: none;
+  }
+
+  & > .login_form, & > .register_form {
     position: absolute;
     right: 0;
     top: 0;
-    width: 120px;
-
+    width: 2* $header_menu_item_width;
     transform: translateY(-100%);
-  }
 
-  & > .login_form.active {
-
-    transform: translateY(0);
+    &.active {
+      transform: translateY(0);
+      box-shadow: 0 6px 24px -6px #444444;
+    }
   }
 }
 
-.login_form {
+.register_form {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 
   background-color: inherit;
-  padding: 5px;
-  padding-top: 20px;
+  padding: 10px;
+  padding-top: $header_height/2;
 
   & > * {
     display: flex;
@@ -257,17 +266,33 @@ $header_height : 36px;
   }
 
   & > input {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-family: inherit;
-  }
+    height: 1.8em;
+    padding: 0 10px;
+    border: none;
 
-  & > button {
-    margin-top: 5px;
-    text-align: center;
+    &[type="submit"] {
+
+      margin: 10px 40px;
+      margin-bottom: 5px;
+    }
   }
 }
 
-// fresh_schemes.module
+.login_form {
+  @extend .register_form;
+
+  & > button {
+    margin-bottom: $header_height/2;
+
+    background-color: $negative_text_color;
+    color: $text_color;
+    font-style: italic;
+  }
+}
+
+// fresh_schemes.modal
 #schedule_list {
 
 
