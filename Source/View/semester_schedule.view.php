@@ -2,9 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: Berk
- * Date: 08.05.2017
- * Time: 14:56
+ * Date: 21.05.2017
+ * Time: 14:47
  */
+
 
 ?>
 
@@ -19,17 +20,9 @@
 
 <div class="full col center">
 
-    <div class="row container center">
+    <div class="row container">
 
-        <h1>404</h1>
-
-        <br>
-
-        <hr>
-
-        <br>
-
-        <h2>Page not found.</h2>
+        <h2>Here is your current weekly schedule</h2>
 
     </div>
 

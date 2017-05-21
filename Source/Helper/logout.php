@@ -12,4 +12,8 @@ session_unset();
 
 session_destroy();
 
-header("Location: ". $_SERVER['HTTP_REFERER']);
+?>
+
+<script>
+    window.history.go(-1);
+</script>

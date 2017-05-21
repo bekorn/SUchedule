@@ -8,11 +8,23 @@
 
 $mysqli = include "connector.php";
 
-session_start();
+function return_back ( $message = "" ) {
+
+    if( $message == "" ) {
+
+        die( "<script>window.history.go(-1);</script>" );
+    }
+    else {
+
+        die( "<script> alert( '$message' ); window.history.go(-1);</script>" );
+    }
+
+}
+
 
 if( empty($_POST['mail']) && empty($_POST['password']) ) {
 
-    die( "Please enter e-mail and password" );
+    return_back (  "Please enter e-mail and password" );
 }
 
 $mail = $_POST['mail'];
@@ -21,27 +33,28 @@ $password = $_POST['password'];
 //  Email Varification
 if( explode( '@', $mail)[1] != 'sabanciuniv.edu' ) {
 
-    die( "Please enter a Sabancı University mail to login" );
+    return_back (  'Please enter a Sabancı University mail to login' );
 }
 
-$sql = "SELECT s_id, mail, password FROM students WHERE mail=?";
+$sql = "SELECT s_id, mail, password, name, surname FROM students WHERE mail=?";
 $stmt = $mysqli->prepare( $sql );
 $stmt->bind_param( 's', $mail  );
 $stmt->execute();
 
 $result = $stmt->get_result()->fetch_array();
 
-var_dump( $result );
-
 if( count($result) && password_verify( $password, $result['password'] ) ) {
 
+    session_start();
     $_SESSION['user_id'] = $result['s_id'];
-    header("Location: ". $_SERVER['HTTP_REFERER']);
-//    die( 'Login Successful' );
+    $_SESSION['user_full_name'] = $result['name'] ." ". $result['surname'];
+
+//    header("Location: ". $_SERVER['HTTP_REFERER']);
+    return_back ();
 }
 else {
 
-    die( 'Wrong e-mail or password' );
+    return_back (  'Wrong e-mail or password' );
 }
 
 ?>

@@ -84,8 +84,12 @@ body {
   flex-wrap: wrap;
 }
 
-.center {
+.col.center {
   justify-content: center;
+}
+
+.row.center {
+  align-items: center;
 }
 
 .center-text {

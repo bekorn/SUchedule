@@ -6,10 +6,6 @@
  * Time: 13:49
  */
 
-session_start();
-
-//var_dump($_SESSION)
-
 ?>
 
 <div class="col center" id="header">
@@ -40,7 +36,7 @@ session_start();
                     <label for="password">Password</label>
                     <input name="password" id="password" type="password">
 
-                    <input type="submit" value="Login"></input>
+                    <input type="submit" value="Login">
 
                 </form>
 
@@ -63,7 +59,7 @@ session_start();
                     <label for="password">Password</label>
                     <input name="password" id="password" type="password">
 
-                    <input type="submit" value="Register"></input>
+                    <input type="submit" value="Register">
 
                 </form>
 
@@ -99,7 +95,7 @@ session_start();
 
             <?php else: ?>
 
-                <a class="on_right" href="<?=__VIEW_LINK__?>profile">Profile</a>
+                <a class="on_right" href="<?=__VIEW_LINK__?>profile/<?= $_SESSION['user_id'] ?>">Profile</a>
 
                 <a href="<?=__VIEW_LINK__?>my_schedule">My Schedule</a>
 
