@@ -197,4 +197,55 @@ button, input[type="submit"] {
   color: #222;
   font-style: italic; }
 
+.profile_header {
+  padding: 20px; }
+  .profile_header > h1 {
+    margin-left: 30px; }
+
+.profile_picture {
+  border-radius: 50%; }
+
+.schedule_list {
+  padding: 10px 20px;
+  font-family: "Oxygen", sans-serif; }
+
+.schedule {
+  margin: 20px 0;
+  border-radius: 15px; }
+  .schedule .header {
+    align-items: baseline;
+    padding: 10px 20px;
+    border-radius: 15px 15px 0 0;
+    background-color: #96d2fa; }
+    .schedule .header .name {
+      font-size: 1.3em; }
+    .schedule .header .date {
+      margin-left: 10px;
+      color: #666;
+      font-size: 0.8em; }
+    .schedule .header .like {
+      margin-left: auto; }
+      .schedule .header .like button {
+        border: none;
+        background-color: transparent;
+        font-size: 1.3em;
+        transition: 0.3s all ease-in-out; }
+        .schedule .header .like button:hover {
+          transform: translateX(-30%); }
+@keyframes like {
+  0% {
+    transform: translateX(0); }
+  50% {
+    transform: translateX(120%); }
+  100% {
+    transform: translateX(0); } }
+        .schedule .header .like button:visited, .schedule .header .like button:focus {
+          animation: like 0.3s;
+          outline: none; }
+  .schedule .body {
+    padding: 10px;
+    border: 2px solid #96d2fa;
+    border-top: none;
+    border-radius: 0 0 15px 15px; }
+
 /*# sourceMappingURL=style.css.map */

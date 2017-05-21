@@ -95,9 +95,9 @@
 
             <?php else: ?>
 
-                <a class="on_right" href="<?=__VIEW_LINK__?>profile/<?= $_SESSION['user_id'] ?>">Profile</a>
+                <a class="on_right" href="<?=__VIEW_LINK__?>create-schedule">+ Schedule</a>
 
-                <a href="<?=__VIEW_LINK__?>my_schedule">My Schedule</a>
+                <a href="<?=__VIEW_LINK__?>profile/<?= $_SESSION['user_id'] ?>">Profile</a>
 
                 <a href="<?=__VIEW_LINK__?>Helper/logout">Log Out</a>
 

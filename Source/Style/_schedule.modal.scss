@@ -1,0 +1,76 @@
+
+$schedule_color : #96d2fa;    //  $theme_color_light;
+
+.schedule_list {
+  padding: 10px $container_padding;
+
+  font-family: $header_font;
+}
+
+
+.schedule {
+  margin: 20px 0;
+  //border: solid 5px red;
+  border-radius: $corner_radius;
+
+  .header {
+    align-items: baseline;
+    padding: 10px 20px;
+
+    border-radius: $corner_radius $corner_radius 0 0;
+    background-color: $schedule_color;
+
+    .name {
+      font-size: 1.3em;
+    }
+
+    .date {
+      margin-left: 10px;
+      color: $text_color_faded;
+      font-size: 0.8em;
+    }
+
+    .like {
+      margin-left: auto;
+
+      button {
+        border: none;
+        background-color: transparent;
+        font-size: 1.3em;
+
+        transition: 0.3s all ease-in-out;
+
+        &:hover {
+          transform: translateX( -30% );
+        }
+
+        @keyframes like {
+          0% {
+            transform: translateX( 0 );
+          }
+          50% {
+            transform: translateX( 120% );
+          }
+
+          100% {
+            transform: translateX( 0 );
+          }
+        }
+
+        &:visited, &:focus {
+          animation: like 0.3s;
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .body {
+    padding: 10px;
+
+    border: 2px solid $schedule_color;
+    border-top: none;
+    border-radius: 0 0 $corner_radius $corner_radius;
+
+  }
+}

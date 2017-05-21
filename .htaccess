@@ -5,7 +5,7 @@ RewriteRule ^Helper/(\w+)$ Source/Helper/$1.php [NC] [L]
 RewriteRule ^Source/Style/(\w+\.css)$ Source/Style/$1 [NC] [L]
 RewriteRule ^Media/(\w+\.png)$ Source/Media/$1 [NC] [L]
 RewriteRule ^Media/(\w+\.jpg)$ Source/Media/$1 [NC] [L]
-RewriteRule ^(\.view\.php)$ $1 [NC] [L]
+#RewriteRule ^(\.view\.php)$ $1 [NC] [L]    //  TODO: What does this do exactly?!?
 
 # If nt any of these links cath it, then
 RewriteCond %{REQUEST_FILENAME} !-f

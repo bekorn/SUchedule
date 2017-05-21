@@ -1,0 +1,114 @@
+$header_height : 36px;
+$header_menu_item_width : 120px;
+
+#header {
+  margin-bottom: 10px;
+  background-color: #2980b9;
+
+  & .container {
+    background-color: inherit;
+  }
+}
+
+#header_menu {
+  position: relative;
+  flex-basis: $header_height;
+  user-select: none;
+  background-color: #3498db;
+
+  & > * {
+    display: flex;
+    flex-basis: $header_menu_item_width;
+    justify-content: center;
+    align-items: center;
+
+    font-family: $header_font;
+    font-size: inherit;
+    color: $negative_text_color;
+    background-color: inherit;
+    border-right: 3px solid rgba(0,0,0, 0.1);
+
+    transition: 0.3s all ease-in-out;
+
+    &:not( .login_form ):not( .register_form ):hover {
+      box-shadow: inset 0 -3px 0 $negative_text_color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & > .menu_divider, & > :last-child, & > form {
+    border-right: unset;
+  }
+
+  & > .menu_divider {
+    margin-right: auto;
+  }
+
+  & button {
+    flex-basis: 2* $header_menu_item_width;
+    border: none;
+  }
+
+  & > .login_form, & > .register_form {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2* $header_menu_item_width;
+    transform: translateY(-100%);
+
+    &.active {
+      transform: translateY(0);
+      box-shadow: 0 6px 24px -6px #444444;
+    }
+  }
+}
+
+.register_form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  background-color: inherit;
+  padding: 10px;
+  padding-top: $header_height/2;
+
+  & > * {
+    display: flex;
+    height: $header_height;
+    align-items: center;
+    width: 100%;
+  }
+
+  & > label {
+    justify-content: center;
+  }
+
+  & > input {
+    margin-bottom: 8px;
+    font-family: inherit;
+    height: 1.8em;
+    padding: 0 10px;
+    border: none;
+
+    &[type="submit"] {
+
+      margin: 10px 40px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.login_form {
+  @extend .register_form;
+
+  & > button {
+    margin-bottom: $header_height/2;
+
+    background-color: $negative_text_color;
+    color: $text_color;
+    font-style: italic;
+  }
+}
