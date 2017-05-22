@@ -22,7 +22,7 @@ function return_back ( $message = "" ) {
 }
 
 
-if( empty($_POST['mail']) && empty($_POST['password']) ) {
+if( empty($_POST['mail']) || empty($_POST['password']) ) {
 
     return_back (  "Please enter e-mail and password" );
 }
@@ -56,5 +56,3 @@ else {
 
     return_back (  'Wrong e-mail or password' );
 }
-
-?>

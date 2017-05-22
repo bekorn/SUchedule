@@ -25,16 +25,6 @@ if( !empty( $_SESSION['user_id'] )  &&  $user['s_id'] == $_SESSION['user_id'] ) 
     $self = true;
 }
 
-if( $user_found ) {
-
-    $sql = "SELECT * FROM `latest_schedules` WHERE s_id=?";
-    $stmt = $mysqli->prepare( $sql );
-    $stmt->bind_param( 'i', $user['s_id']  );
-    $stmt->execute();
-
-    $schedules = $stmt->get_result()->fetch_all( MYSQLI_ASSOC );
-}
-
 ?>
 
 <!doctype html>
@@ -60,7 +50,13 @@ if( $user_found ) {
 
             <img class="profile_picture" src="http://lorempixel.com/120/120/people" alt="profile_picture">
 
-            <h1><?= $user['name'] .' '. $user['surname'] ?></h1>
+            <div class="row profile_info">
+
+                <h1><?= $user['name'] .' '. $user['surname'] ?></h1>
+
+                <p><a href="mailto:<?= $user['mail']?>?body=Sent from betterweb.com">📧</a> <?= $user['mail'] ?></p>
+
+            </div>
 
         <?php endif; ?>
 
@@ -69,18 +65,7 @@ if( $user_found ) {
 
         <?php if( $user_found ): ?>
 
-            <div class="row schedule_list">
-
-            <?php
-
-            foreach( $schedules as $schedule ) {
-
-                insert( '/Source/Modal/schedule.modal.php', $schedule );
-            }
-
-            ?>
-
-            </div>
+            <?php insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'user_id' => $user['s_id']]) ?>
 
         <?php endif; ?>
 

@@ -59,7 +59,7 @@ switch( $path[0] ) {
         break;
 
     case 'create-schedule':
-        insert( "/Source/View/create_schedule.view.php", ['mysqli' => $mysqli] );
+        insert( "/Source/View/create-schedule.view.php", ['mysqli' => $mysqli] );
         break;
 
     default:

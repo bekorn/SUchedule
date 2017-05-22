@@ -37,7 +37,7 @@ body {
   flex-direction: row; }
 
 .full {
-  flex-grow: 1; }
+  flex: 1; }
 
 .wrap {
   flex-wrap: wrap; }
@@ -71,59 +71,19 @@ button, input[type="submit"] {
   align-items: center;
   justify-content: center; }
 
-.main {
-  padding: 0 15px;
-  padding-bottom: 15px; }
+.profile_header {
+  margin: 20px;
+  margin-bottom: 60px; }
+  .profile_header > .profile_info {
+    margin-left: 30px;
+    justify-content: center; }
 
-/*
-.info_box{
-  flex: 1 1 $info_box_mo;
+.profile_picture {
+  border-radius: 50%;
+  border: 1px solid #333;
+  padding: 2px;
+  box-shadow: 0 4px 10px -4px black; }
 
-  @media (min-width: $medium_view){
-    flex: 1 1 $info_box_md;
-  }
-
-  @media (min-width: $large_view){
-    flex: 1 1 $info_box_lg;
-  }
-
-  margin: $info_box_gutter / 2;
-
-  background-color: $info_box_bg;
-  border-collapse: collapse;
-  border-radius: $corner_radius;
-  padding: $corner_radius+10px 0;
-
-  text-align: center;
-  font-size: 1em;
-  font-weight: 500;
-
-  & > h3 {
-    font-family: $header_font;
-    margin-bottom: 10px;
-  }
-}
-
-.info_table {
-  width: calc( 100% + 6px );
-  margin: 0 -3px;
-
-  border-spacing: 3px;
-  background-color: $content_bg;
-  font-weight: inherit;
-  font-size: 1em;
-
-  & td, & tr {
-    padding: 10px;
-    text-align: center;
-  }
-
-  & td {
-    min-width: 80px;
-    background-color: $info_box_bg;
-  }
-}
-*/
 #header {
   margin-bottom: 10px;
   background-color: #2980b9; }
@@ -161,6 +121,7 @@ button, input[type="submit"] {
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 100;
     width: 240px;
     transform: translateY(-100%); }
     #header_menu > .login_form.active, #header_menu > .register_form.active, #header_menu > .active.login_form {
@@ -197,38 +158,47 @@ button, input[type="submit"] {
   color: #222;
   font-style: italic; }
 
-.profile_header {
-  padding: 20px; }
-  .profile_header > h1 {
-    margin-left: 30px; }
-
-.profile_picture {
-  border-radius: 50%; }
-
 .schedule_list {
-  padding: 10px 20px;
-  font-family: "Oxygen", sans-serif; }
+  margin: 10px 60px; }
+  .schedule_list > i {
+    margin: 10px;
+    align-self: center; }
 
 .schedule {
-  margin: 20px 0;
-  border-radius: 15px; }
+  margin-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px -4px black;
+  font-family: "Oxygen", sans-serif; }
+  .schedule:last-child {
+    margin-bottom: unset; }
   .schedule .header {
     align-items: baseline;
     padding: 10px 20px;
+    padding-left: 10px;
     border-radius: 15px 15px 0 0;
     background-color: #96d2fa; }
+    .schedule .header .is_long {
+      margin-right: 10px;
+      background-color: #3498db;
+      color: ghostwhite;
+      padding: 5px;
+      border-radius: 8px; }
     .schedule .header .name {
       font-size: 1.3em; }
     .schedule .header .date {
       margin-left: 10px;
       color: #666;
       font-size: 0.8em; }
+    .schedule .header .created_by {
+      margin-left: 10px; }
     .schedule .header .like {
       margin-left: auto; }
       .schedule .header .like button {
         border: none;
         background-color: transparent;
         font-size: 1.3em;
+        filter: grayscale(100%);
+        user-select: none;
         transition: 0.3s all ease-in-out; }
         .schedule .header .like button:hover {
           transform: translateX(-30%); }
@@ -238,14 +208,27 @@ button, input[type="submit"] {
   50% {
     transform: translateX(120%); }
   100% {
-    transform: translateX(0); } }
-        .schedule .header .like button:visited, .schedule .header .like button:focus {
-          animation: like 0.3s;
+    transform: translateX(0);
+    filter: grayscale(0); } }
+        .schedule .header .like button:focus {
           outline: none; }
   .schedule .body {
-    padding: 10px;
+    padding: 10px 20px;
     border: 2px solid #96d2fa;
     border-top: none;
     border-radius: 0 0 15px 15px; }
+
+.page_header {
+  margin: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 10px; }
+
+.intro_message {
+  margin: 20px; }
+  .intro_message p {
+    font-size: 1.2em;
+    width: 60%; }
+  .intro_message + .schedule {
+    margin: 0 60px; }
 
 /*# sourceMappingURL=style.css.map */

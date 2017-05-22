@@ -24,7 +24,13 @@ $s_surname;      // string 'Koçulu' (length=7)
 
     <div class="full row">
 
-        <div class="col header">
+        <div class="col wrap header">
+
+            <div class="is_long">
+
+                <?php echo ($is_long)? 'LTS' : 'SS'; ?>
+
+            </div>
 
             <div class="name">
 
@@ -38,11 +44,21 @@ $s_surname;      // string 'Koçulu' (length=7)
 
             </div>
 
+            <div class="created_by">
+
+                <a href="<?= __VIEW_LINK__ ?>profile/<?= $s_id ?>"><?= $s_name ." ". $s_surname ?></a>
+
+            </div>
+
             <div class="like">
 
-                <button type="button">👍</button>
+                <button type="button" data-id="<?= $id ?>" data-is_long="<?= $is_long ?>">👍</button>
 
-                <?= $likes ?>
+                <inline>
+
+                    <?= $likes ?>
+
+                </inline>
 
             </div>
 

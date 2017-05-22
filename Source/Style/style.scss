@@ -2,24 +2,14 @@ $large_view : 1200px;
 $medium_view : 768px;
 $mobile_view : 480px;
 
-$info_box_gutter : 10px;
-
-//$container_lg : $large_view - 200px;
-//$container_md : $medium_view - 200px;
-//$container_mo : calc( 100% - 60px );
 $container_lg : $large_view - 200px;
 $container_md : $medium_view - 100px;
 $container_mo : 100%;
-
-$info_box_lg : ($container_lg - 6*$info_box_gutter) / 3;
-$info_box_md : ($container_md - 5*$info_box_gutter)  / 2;
-$info_box_mo : $container_mo;
 
 $corner_radius : 15px;
 
 $container_padding : 20px;
 
-$info_box_bg : ghostwhite;
 $content_bg : #eee;
 $text_color : #222;
 $text_color_faded : #666;
@@ -80,7 +70,7 @@ body {
 }
 
 .full {
-  flex-grow: 1;
+  flex: 1;
 }
 
 .wrap {
@@ -128,67 +118,35 @@ button, input[type="submit"] {
   justify-content: center;
 }
 
-.main {
-  padding: 0 $info_box_gutter*1.5;
-  padding-bottom: $info_box_gutter*1.5;
-}
-
-// Unused Modules
-/*
-.info_box{
-  flex: 1 1 $info_box_mo;
-
-  @media (min-width: $medium_view){
-    flex: 1 1 $info_box_md;
-  }
-
-  @media (min-width: $large_view){
-    flex: 1 1 $info_box_lg;
-  }
-
-  margin: $info_box_gutter / 2;
-
-  background-color: $info_box_bg;
-  border-collapse: collapse;
-  border-radius: $corner_radius;
-  padding: $corner_radius+10px 0;
-
-  text-align: center;
-  font-size: 1em;
-  font-weight: 500;
-
-  & > h3 {
-    font-family: $header_font;
-    margin-bottom: 10px;
-  }
-}
-
-.info_table {
-  width: calc( 100% + 6px );
-  margin: 0 -3px;
-
-  border-spacing: 3px;
-  background-color: $content_bg;
-  font-weight: inherit;
-  font-size: 1em;
-
-  & td, & tr {
-    padding: 10px;
-    text-align: center;
-  }
-
-  & td {
-    min-width: 80px;
-    background-color: $info_box_bg;
-  }
-}
-*/
+//  profile.view
+@import "profile.view";
 
 //  header.modal
 @import "header.modal";
 
-//  profile.modal
-@import "profile.modal";
+//  search.view
+@import "search.view";
 
-// fresh_schemes.modal
+// schedule.modal
 @import "schedule.modal";
+
+//  Page Header (fresh.view.php)
+.page_header {
+  margin: $container_padding;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+//  Home Page (home.view.php)
+.intro_message {
+  margin: $container_padding;
+
+  p {
+    font-size: 1.2em;
+    width: 60%;
+  }
+
+  & + .schedule {
+    margin: 0 $container_padding*3;
+  }
+}

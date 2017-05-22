@@ -56,6 +56,7 @@ $header_menu_item_width : 120px;
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 100;
     width: 2* $header_menu_item_width;
     transform: translateY(-100%);
 

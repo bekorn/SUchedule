@@ -23,7 +23,11 @@
 
     <div class="row container">
 
-        <h2>Create a schedule</h2>
+        <div class="col page_header center">
+
+            <h2>Create a schedule</h2>
+
+        </div>
 
     </div>
 

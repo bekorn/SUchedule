@@ -21,7 +21,13 @@
 
     <div class="row container">
 
-        <?php insert( "/Source/Modal/fresh_schemes.modal.php", ['mysqli' => $mysqli] ) ?>
+        <div class="col page_header center">
+
+            <h1>~ Freshest Schedules ~</h1>
+
+        </div>
+
+        <?php insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli]) ?>
 
     </div>
 

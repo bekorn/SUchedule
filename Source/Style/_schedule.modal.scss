@@ -2,23 +2,41 @@
 $schedule_color : #96d2fa;    //  $theme_color_light;
 
 .schedule_list {
-  padding: 10px $container_padding;
+  margin: 10px $container_padding*3;
 
-  font-family: $header_font;
+  & > i {
+    margin: 10px;
+    align-self: center;
+  }
 }
 
 
 .schedule {
-  margin: 20px 0;
-  //border: solid 5px red;
-  border-radius: $corner_radius;
+  margin-bottom: 30px;
+
+  border-radius: 15px;
+  box-shadow: 0 4px 10px -4px black;
+  font-family: $header_font;
+
+  &:last-child {
+    margin-bottom: unset;
+  }
 
   .header {
     align-items: baseline;
     padding: 10px 20px;
+    padding-left: 10px;
 
     border-radius: $corner_radius $corner_radius 0 0;
     background-color: $schedule_color;
+
+    .is_long {
+      margin-right: 10px;
+      background-color: $theme_color_dark;
+      color: $negative_text_color;
+      padding: 5px;
+      border-radius: 8px;
+    }
 
     .name {
       font-size: 1.3em;
@@ -30,6 +48,10 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
       font-size: 0.8em;
     }
 
+    .created_by {
+      margin-left: 10px;
+    }
+
     .like {
       margin-left: auto;
 
@@ -37,6 +59,8 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
         border: none;
         background-color: transparent;
         font-size: 1.3em;
+        filter: grayscale(100%);
+        user-select: none;
 
         transition: 0.3s all ease-in-out;
 
@@ -54,11 +78,16 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
 
           100% {
             transform: translateX( 0 );
+            filter: grayscale(0);
           }
         }
 
-        &:visited, &:focus {
-          animation: like 0.3s;
+        //&:active {
+        //  animation: like 0.3s;
+        //  outline: none;
+        //}
+
+        &:focus {
           outline: none;
         }
       }
@@ -66,7 +95,7 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
   }
 
   .body {
-    padding: 10px;
+    padding: 10px 20px;
 
     border: 2px solid $schedule_color;
     border-top: none;

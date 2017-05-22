@@ -54,9 +54,5 @@ if( $stmt->execute() ) {
 }
 else {
 
-//    var_dump( $stmt );    TODO: Show proper error messages
     return_back ( 'Error occurred : '. $stmt->error );
 }
-
-
-?>
