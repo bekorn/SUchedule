@@ -30,11 +30,16 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
     border-radius: $corner_radius $corner_radius 0 0;
     background-color: $schedule_color;
 
+    & > * {
+      max-height: 30px;
+      //  TODO: find a better solution for height serialization
+    }
+
     .is_long {
       margin-right: 10px;
       background-color: $theme_color_dark;
       color: $negative_text_color;
-      padding: 5px;
+      padding: 5px 7px;
       border-radius: 8px;
     }
 
@@ -56,6 +61,7 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
       margin-left: auto;
 
       button {
+        margin-left: 30px;
         border: none;
         background-color: transparent;
         font-size: 1.3em;
@@ -82,11 +88,6 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
           }
         }
 
-        //&:active {
-        //  animation: like 0.3s;
-        //  outline: none;
-        //}
-
         &:focus {
           outline: none;
         }
@@ -97,6 +98,7 @@ $schedule_color : #96d2fa;    //  $theme_color_light;
   .body {
     padding: 10px 20px;
 
+    background-color: $negative_text_color;
     border: 2px solid $schedule_color;
     border-top: none;
     border-radius: 0 0 $corner_radius $corner_radius;

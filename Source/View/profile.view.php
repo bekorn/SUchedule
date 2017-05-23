@@ -6,7 +6,6 @@
  * Time: 14:11
  */
 
-
 /**  Arguments   **/
 $user_id;   //  of the user to be displayed
 

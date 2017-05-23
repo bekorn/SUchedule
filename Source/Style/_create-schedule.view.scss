@@ -1,0 +1,51 @@
+
+#create_schedule {
+  margin: 10px $container_padding*3;
+
+  & input {
+    background-color: $negative_text_color;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:not( [type="submit"] ) {
+      display: flex;
+      width: auto;
+    }
+
+    &[type="radio"] {
+      display: none;
+
+      & + label {
+        user-select: none;
+
+        color: $text_color;
+
+        &:first-of-type {
+          margin: 0 10px;
+        }
+      }
+
+      &:checked + label {
+        color: unset;
+        text-decoration: underline;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      font-style: italic;
+    }
+  }
+
+  & textarea {
+    resize: vertical;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

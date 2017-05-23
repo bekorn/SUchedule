@@ -10,7 +10,7 @@ $mysqli = include "connector.php";
 
 if( !isset($_POST['is_long'], $_POST['id']) ) {
 
-    echo "olmadı";
+    echo json_encode( ['success' => false] );
     exit();
 }
 
@@ -32,4 +32,4 @@ $stmt->execute();
 
 header('Content-Type : application/json');
 
-echo json_encode( ['success' => ($stmt->affected_rows ? true : false)] );     //   ? true : false
+echo json_encode( ['success' => ($stmt->affected_rows ? true : false)] );

@@ -121,6 +121,9 @@ button, input[type="submit"] {
 //  profile.view
 @import "profile.view";
 
+//  create-schedule.view
+@import "create-schedule.view";
+
 //  header.modal
 @import "header.modal";
 
@@ -150,3 +153,4 @@ button, input[type="submit"] {
     margin: 0 $container_padding*3;
   }
 }
+

@@ -40,10 +40,10 @@ CREATE TABLE `courses`
   `description` text COLLATE utf8_unicode_520_ci NOT NULL,
   `hours` int(2) NOT NULL,
   `credit` int(1) NOT NULL,
-  `rating` float NOT NULL,
+  `rating` float NULL,
   `number_of_ratings` int(11) NOT NULL,
-  `section` text COLLATE utf8_unicode_520_ci NOT NULL,
-  `section_number` int(2) NOT NULL,
+  `section` text COLLATE utf8_unicode_520_ci NULL,
+  `section_number` int(2) NULL,
   PRIMARY KEY (`cdn`, `term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
@@ -52,8 +52,21 @@ INSERT INTO `courses` (`cdn`, `term`, `description`, `hours`, `credit`, `rating`
 (12810, 24, 'Course for learning how to listen music', 2, 2, 1.98, 9, 'C', 1),
 (15738, 24, 'Course for drink wine', 2, 2, 5, 12, 'A', 1),
 (22716, 19, 'Course for quantum computing', 5, 4, 3.6, 8, 'B', 12),
-(24729, 26, 'Course for learning how to calculate without calculator', 3, 3, 3.76, 13, 'B', 2);
-
+(24729, 26, 'Course for learning how to calculate without calculator', 3, 3, 3.76, 13, 'B', 2),
+(20916, 25, 'Introduction to Financial Accounting and Reporting', 3, 3, NULL, 0, 'A', NULL),
+(20922, 22, 'Introduction to Financial Accounting and Reporting', 3, 3, NULL, 0, 'C', NULL),
+(21116, 18, 'Kinetics and Materials', 4, 3, NULL, 0, NULL, NULL),
+(20771, 30, 'Introduction to Computing', 3, 3, NULL, 0, NULL, NULL),
+(20872, 30, 'Advanced Programming', 3, 3, NULL, 0, NULL, NULL),
+(20057, 23, 'Algorithms', 3, 3, NULL, 0, NULL, NULL),
+(20061, 17, 'Database Systems', 3, 3, NULL, 0, NULL, NULL),
+(20062, 12, 'Mobile Computing', 3, 3, NULL, 0, NULL, NULL),
+(20249, 09, 'Memory Studies', 3, 3, NULL, 0, NULL, NULL),
+(21119, 07, 'The Medieval Hero,East and West', 3, 3, NULL, 0, NULL, NULL),
+(20535, 30, 'Principles of Atatürk and the History of the Turkish Revolution 2', 2, 2, NULL, 0, 'A', NULL),
+(20536, 30, 'Principles of Atatürk and the History of the Turkish Revolution 2', 2, 2, NULL, 0, 'B', NULL),
+(20729, 25, 'Law and Ethics', 3, 3, NULL, 0, NULL, NULL),
+(20994, 05, 'Introduction to Multimedia', 3, 3, NULL, 0, NULL, NULL);
 -- --------------------------------------------------------
 
 CREATE TABLE `semester_schedules`
@@ -61,9 +74,9 @@ CREATE TABLE `semester_schedules`
   `ss_id` int(11) NOT NULL AUTO_INCREMENT,
   `creator_id` int(11) NOT NULL,
   `created_at` date NOT NULL,
-  `name` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
+  `name` TINYTEXT COLLATE utf8_unicode_520_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
-  `likes` int(11) NOT NULL,
+  `likes` int(11) NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`ss_id`),
   FOREIGN KEY (`creator_id`) REFERENCES students(`s_id`)
@@ -88,9 +101,9 @@ CREATE TABLE `long_term_schedules`
   `lts_id` int(11) NOT NULL AUTO_INCREMENT,
   `creator_id` int(11) NOT NULL,
   `created_at` date NOT NULL,
-  `name` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
+  `name` TINYTEXT COLLATE utf8_unicode_520_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_520_ci NOT NULL,
-  `likes` int(11) NOT NULL,
+  `likes` int(11) NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`lts_id`),
   FOREIGN KEY (`creator_id`) REFERENCES students(`s_id`)

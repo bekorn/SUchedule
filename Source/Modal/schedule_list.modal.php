@@ -100,6 +100,7 @@ else {
             data: { is_long : $(this).data("is_long"), id : $(this).data("id") }
         }).done( function( data ) {
 
+            data = JSON.parse( data );
             console.log( data );
 
             if( data.success ) {
