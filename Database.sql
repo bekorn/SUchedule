@@ -20,6 +20,8 @@ CREATE TABLE `students`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 INSERT INTO `students` (`s_id`, `name`, `surname`, `mail`, `password`) VALUES
+(1, 'Your Friendly', 'Neighborhood Senior', 'iwillbeyourguide@sabanciuniv.edu', '$2y$10$qr0jkdEQyWtpzw9aZR4vYOaaKIgfVEp3aZM4QTvZ3A.gH4LECBw1u'),
+(11111, 'ramazan', 'gidiyor', 'ramazan@sabanciuniv.edu', '$2y$10$I/4IM6oSF8OMQrM4uN2zte.ymv57kMsDRGx4dvJF1Sp5rE515iWdu'),
 (11311, 'Ayse', 'Karabaş', 'aysekarabas@sabanciuniv.edu', 'Buncuk9'),
 (12385, 'Mehmet', 'Okur', 'okur1@sabanciuniv.edu', 'UtahJazZz1'),
 (13856, 'Mehmet Can', 'Erimçağ', 'merimcag@sabanciuniv.edu', 'MemCan2186'),
@@ -29,7 +31,9 @@ INSERT INTO `students` (`s_id`, `name`, `surname`, `mail`, `password`) VALUES
 (17679, 'Berke', 'Koçulu', 'berkekoculu@sabanciuniv.edu', 'KediKopek8956'),
 (17891, 'Ceyla', 'Cerenoğlu', 'ceydos@sabanciuniv.edu', 'PrensesCey3'),
 (19131, 'Şeyma', 'Subaşı', 'subasi@sabanciuniv.edu', 'AcunAsk1'),
-(20638, 'Seren', 'Serengil', 'serser@sabanciuniv.edu', 'aBjKaa8139a3');
+(20638, 'Seren', 'Serengil', 'serser@sabanciuniv.edu', 'aBjKaa8139a3'),
+(20813, 'çık', 'çığk', 'niknokniknaknuk@sabanciuniv.edu', '$2y$10$DKgwwUihLle2y022DNu.6u1QOLcSFSo7FBtG/8HWYJxB/Y/BPOBLq'),
+(20948, 'Ramazan', 'Geliyor', '11ayinsultani@sabanciuniv.edu', '$2y$10$0pecMiatoN6Qv3g1lUpOZeXOCZLfr09LYCB9tawa32XrmyE4kGeAe'),(20960, 'Berk', 'Canlı', 'berkcanli@sabanciuniv.edu', '$2y$10$gD6MnbJgPZAJDor9/WBwJuPXQq2bCavRqlcDX2QVEiccrcWMd0wf6');
 
 -- --------------------------------------------------------
 
@@ -90,9 +94,10 @@ DELIMITER ;
 --  TODO: add this trigger to erdplus_diagram
 
 INSERT INTO `semester_schedules` (`creator_id`, `created_at`, `name`, `description`, `likes`) VALUES
-(17679, '2014-03-04', 'First Year Introduction', 'Which courses you should take on your freshman year!', 34),
-(17679, '2016-02-05', 'Second Year CS Courses', 'Basics and Mandatories', 26),
-(13856, '2017-01-06', 'ECON & CS Double Major Full', 'A very fined list of courses you should take over 4 years', 8);
+(17679, '2017-01-05', 'First Semester Introduction', 'Which courses you should take on your first year?', 25),
+(17679, '2017-04-14', 'Second Year CS Courses', 'Basics and Mandatories', 13),
+(13856, '2017-03-28', 'ECON Third Semester', 'A very fined list of courses you should take', 9),
+(20960, '2017-05-24', 'Freshman Second Semester', 'This will definetly help you in your first add-drop', 9);
 
 -- --------------------------------------------------------
 
@@ -116,12 +121,13 @@ DELIMITER ;
 
 --  TODO: add this trigger to erdplus_diagram
 
-INSERT INTO `long_term_schedules` (`creator_id`, `name`, `description`, `likes`) VALUES
-(12385, 'schcs', 'schedule for cs students for 4 years', 8),
-(15381, 'schecon', 'schedule for econ students for 4 years', 13),
-(15896, 'schmgmt', 'schedule for management students for 7 years', 10),
-(17891, 'schart', 'schedule for art students for 4 years', 4),
-(19131, 'schpsy', 'schedule for psychology students for 4 years', 1);
+INSERT INTO `long_term_schedules` (`creator_id`, `created_at`,`name`, `description`, `likes`) VALUES
+(12385, '2017-01-12', 'schcs', 'schedule for cs students for 4 years', 11),
+(15381, '2017-01-22', 'schecon', 'schedule for econ students for 4 years', 22),
+(15896, '2017-03-16', 'schmgmt', 'schedule for management students for 7 years', 26),
+(17891, '2017-02-08', 'schart', 'schedule for art students for 4 years', 6),
+(19131, '2017-02-26', 'schpsy', 'schedule for psychology students for 4 years', 9),
+(1, '2017-01-01', 'Here is a schedule for your second year', 'LTS = Long Term Schedule | SS = Semester Schedule | Like it if you find it useful or share with your friends. You can also write a comment for it.', 45),(20960, '2017-05-24', 'Generic CS 2nd Year Courses', 'These are probably will be the courses you end up picking', 5);
 
 -- --------------------------------------------------------
 
@@ -229,8 +235,14 @@ CREATE TABLE `ss_contains_c`
   FOREIGN KEY (`cdn`, `term`) REFERENCES `courses`(`cdn`, `term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
-
---  END OF TABLES
+INSERT INTO `ss_contains_c` (`ss_id`, `cdn`, `term`) VALUES
+(2, 12559, 22),
+(1, 12810, 24),
+(1, 15738, 24),
+(2, 20061, 17),
+(4, 20535, 30),
+(2, 20872, 30),
+(3, 20916, 25);
 
 --  VIEWS
 
@@ -254,36 +266,4 @@ ORDER BY `created_at` DESC//
 DELIMITER ;
 
 
-
-
 --  PROCEDURES
-
-/*  Returns SSs created by specific user  */
-# DELIMITER //
-#
-# CREATE PROCEDURE search_for_student ( _sid int(11) )
-# BEGIN
-#   IF
-# SELECT
-# FROM
-# WHERE ;
-# END//
-#
-# DELIMITER ;
-
-/*  Gets the latest created 20 Semester Schedules and Long Term Schedules combines together
-
-(
-SELECT false AS `is_long`, `semester_schedules`.`ss_id` AS `id`, `semester_schedules`.`name`, `semester_schedules`.`description`, `semester_schedules`.`likes`, `semester_schedules`.`created_at`, `students`.`name`, `students`.`surname`
-FROM `semester_schedules`, `students`
-WHERE `students`.`s_id` = `semester_schedules`.`creator_id`
-LIMIT 20
-)
-UNION
-(
-SELECT true AS `is_long`, `long_term_schedules`.`lts_id` AS `id`, `long_term_schedules`.`name`, `long_term_schedules`.`description`, `long_term_schedules`.`likes`, `long_term_schedules`.`created_at`, `students`.`name`, `students`.`surname`
-FROM `long_term_schedules`, `students`
-WHERE `students`.`s_id` = `long_term_schedules`.`creator_id`
-)
-ORDER BY `created_at` DESC
-LIMIT 20
