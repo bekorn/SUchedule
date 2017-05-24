@@ -29,7 +29,7 @@ if( !empty( $_SESSION['user_id'] )  &&  $user['s_id'] == $_SESSION['user_id'] ) 
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Profile']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => ($self ? 'Profile' : $user['name']." ".$user['surname'] )]) ?>
 
 <body class="row">
 
@@ -61,10 +61,10 @@ if( !empty( $_SESSION['user_id'] )  &&  $user['s_id'] == $_SESSION['user_id'] ) 
 
         </div>
 
-
         <?php if( $user_found ): ?>
 
-            <?php insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'user_id' => $user['s_id']]) ?>
+
+        <?php insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'user_id' => [$user['s_id']]]) ?>
 
         <?php endif; ?>
 

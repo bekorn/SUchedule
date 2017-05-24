@@ -18,7 +18,6 @@ function return_back ( $message = "" ) {
 
         die( "<script> alert( '$message' ); window.history.go(-1);</script>" );
     }
-
 }
 
 if( empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['mail']) || empty($_POST['student_number']) || empty($_POST['password']) ) {

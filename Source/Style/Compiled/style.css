@@ -66,6 +66,10 @@ a {
 span {
   font-size: 0.75em; }
 
+h2 {
+  margin-top: 20px;
+  text-align: center; }
+
 button, input[type="submit"] {
   cursor: pointer;
   align-items: center;
@@ -85,7 +89,7 @@ button, input[type="submit"] {
   box-shadow: 0 4px 10px -4px black; }
 
 #create_schedule {
-  margin: 10px 60px; }
+  margin: 10px 0; }
   #create_schedule input {
     background-color: ghostwhite;
     border: none;
@@ -112,6 +116,17 @@ button, input[type="submit"] {
     resize: vertical; }
     #create_schedule textarea:focus {
       outline: none; }
+
+#form_submit[form="create_schedule"] {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  color: ghostwhite;
+  background-color: #3498db; }
+  #form_submit[form="create_schedule"]:hover {
+    background-color: #2980b9; }
 
 #header {
   margin-bottom: 10px;
@@ -188,12 +203,13 @@ button, input[type="submit"] {
   font-style: italic; }
 
 .schedule_list {
-  margin: 10px 60px; }
+  margin: 10px 0; }
   .schedule_list > i {
     margin: 10px;
     align-self: center; }
 
 .schedule {
+  margin: 10px 60px;
   margin-bottom: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 10px -4px black;
@@ -214,8 +230,11 @@ button, input[type="submit"] {
       color: ghostwhite;
       padding: 5px 7px;
       border-radius: 8px; }
-    .schedule .header .name {
-      font-size: 1.3em; }
+    .schedule .header .name a {
+      font-size: 1.3em;
+      color: #222; }
+      .schedule .header .name a:hover {
+        color: #3498db; }
     .schedule .header .date {
       margin-left: 10px;
       color: #666;
@@ -248,6 +267,59 @@ button, input[type="submit"] {
     padding: 10px 20px;
     background-color: ghostwhite;
     border: 2px solid #96d2fa;
+    border-top: none;
+    border-radius: 0 0 15px 15px; }
+
+.course {
+  margin: 10px 60px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px -4px black;
+  font-family: "Oxygen", sans-serif; }
+  .course:last-child {
+    margin-bottom: unset; }
+  .course .header {
+    align-items: baseline;
+    padding: 10px 20px;
+    padding-left: 10px;
+    border-radius: 15px 15px 0 0;
+    background-color: #fa9696; }
+    .course .header > * {
+      max-height: 30px; }
+    .course .header .is_long {
+      margin-right: 10px;
+      background-color: #db3434;
+      color: ghostwhite;
+      padding: 5px 7px;
+      border-radius: 8px; }
+    .course .header .name a {
+      font-size: 1.3em;
+      color: #222; }
+      .course .header .name a:hover {
+        color: #3498db; }
+    .course .header .term {
+      margin-left: 10px;
+      color: #666;
+      font-size: 0.8em; }
+    .course .header .lecturer {
+      margin-left: 10px; }
+    .course .header .rating {
+      margin-left: auto; }
+      .course .header .rating button {
+        border: none;
+        background-color: transparent;
+        font-size: 1.3em;
+        filter: grayscale(100%);
+        user-select: none;
+        transition: 0.3s all ease-in-out; }
+        .course .header .rating button:first-child {
+          margin-left: 30px; }
+        .course .header .rating button:focus {
+          outline: none; }
+  .course .body {
+    padding: 10px 20px;
+    background-color: ghostwhite;
+    border: 2px solid #fa9696;
     border-top: none;
     border-radius: 0 0 15px 15px; }
 

@@ -112,6 +112,12 @@ span {
   font-size: 0.75em;
 }
 
+h2 {
+  //  TODO: this is a quick fix, correct it later
+  margin-top: 20px;
+  text-align: center;
+}
+
 button, input[type="submit"] {
   cursor: pointer;
   align-items: center;
@@ -132,6 +138,9 @@ button, input[type="submit"] {
 
 // schedule.modal
 @import "schedule.modal";
+
+//  course.modal
+@import "course.modal";
 
 //  Page Header (fresh.view.php)
 .page_header {

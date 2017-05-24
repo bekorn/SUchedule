@@ -11,7 +11,7 @@
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Fresh Schemes']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => '404']) ?>
 
 <body class="row">
 

@@ -34,7 +34,7 @@ $s_surname;      // string 'Koçulu' (length=7)
 
             <div class="name">
 
-                <?= $name ?>
+                <a href="<?=__VIEW_LINK__?>schedule/<?= ($is_long ? 'lt' : 's') ?>/<?= $id ?>"><?= $name ?></a>
 
             </div>
 

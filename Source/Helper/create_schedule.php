@@ -20,7 +20,6 @@ function return_back ( $message = "" ) {
 
         die( "<script> alert( '$message' ); window.history.go(-1);</script>" );
     }
-
 }
 
 var_dump( $_POST );

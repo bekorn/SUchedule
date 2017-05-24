@@ -54,6 +54,15 @@ switch( $path[0] ) {
         insert( "/Source/View/404.view.php" );
         break;
 
+    case 'schedule':
+        if( !empty( $path[1] ) && ( $path[1] == 's' || $path[1] == 'lt' ) && !empty( $path[2] ) ) {
+
+            insert( "/Source/View/schedule.view.php", ['mysqli' => $mysqli, 'is_long' => ($path[1] == 'lt' ? 1 : 0), 'id' => $path[2]] );
+            break;
+        }
+        insert( "/Source/View/404.view.php" );
+        break;
+
     case 'search':
         insert( "/Source/View/search.view.php", ['mysqli' => $mysqli] );
         break;

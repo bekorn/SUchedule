@@ -11,7 +11,7 @@
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Fresh Schemes']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Home']) ?>
 
 <body class="row">
 
@@ -49,11 +49,7 @@
 
         </div>
 
-        <?php
-
-        insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'user_id' => 1] );
-
-        ?>
+        <?php insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'user_id' => [1]] ) ?>
 
         <div class="col intro_message center">
 

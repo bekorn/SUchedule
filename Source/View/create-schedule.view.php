@@ -15,7 +15,7 @@ $_SESSION['user_full_name'];
 <!doctype html>
 <html lang="en">
 
-<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Fresh Schemes']) ?>
+<?php insert( "/Source/Modal/header_tag.php", ['title' => 'Create Schedule']) ?>
 
 <body class="row">
 
@@ -91,9 +91,15 @@ $_SESSION['user_full_name'];
 
         </form>
 
-        <div class="col">
+        <div class="col center">
 
             <input form="create_schedule" type="submit" id="form_submit" value="Create Schedule">
+
+        </div>
+
+        <div class="col">
+
+            <?php insert( '/Source/Modal/course_list.modal.php', ['mysqli' => $mysqli] ) ?>
 
         </div>
 
