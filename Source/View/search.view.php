@@ -53,7 +53,7 @@ else {
 
 <body class="row">
 
-<?php insert( "/Source/Modal/header.modal.php" ) ?>
+<?php insert( "/Source/Modal/header.modal.php", ['current_page' => 'search']  ) ?>
 
 <div class="full col center">
 
@@ -61,7 +61,7 @@ else {
 
         <div class="col">
 
-            <form class="search_form" action="<?=__VIEW_LINK__?>search" method="POST">
+            <form class="search_form" action="<?=__URL_BASE__?>search" method="POST">
 
                 <label for="user_name">User Name</label>
                 <input name="user_name" id="user_name" type="text" value="<?=( isset($_POST['user_name']) ) ? $_POST['user_name'] : ""?>">

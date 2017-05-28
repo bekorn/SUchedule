@@ -34,11 +34,14 @@ $header_menu_item_width : 120px;
       outline: none;
     }
 
+    &.active {
+      box-shadow: inset 0 -3px 0 $negative_text_color;
+    }
+
     &:not( .login_form ):not( .register_form ) {
 
       &:hover, &:focus {
         box-shadow: inset 0 -3px 0 $negative_text_color;
-
       }
     }
   }

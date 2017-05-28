@@ -116,7 +116,7 @@ else {
 
         $.ajax({
             type: 'POST',
-            url: "<?=__VIEW_LINK__?>Helper/like" ,
+            url: "<?=__URL_BASE__?>Source/Helper/like" ,
             data: { is_long : $(this).data("is_long"), id : $(this).data("id") }
         }).done( function( data ) {
 

@@ -34,7 +34,7 @@ $s_surname;      // string 'Koçulu' (length=7)
 
             <div class="name">
 
-                <a href="<?=__VIEW_LINK__?>schedule/<?= ($is_long ? 'lt' : 's') ?>/<?= $id ?>"><?= $name ?></a>
+                <a href="<?=__URL_BASE__?>schedule/<?= ($is_long ? 'lt' : 's') ?>/<?= $id ?>"><?= $name ?></a>
 
             </div>
 
@@ -46,7 +46,7 @@ $s_surname;      // string 'Koçulu' (length=7)
 
             <div class="created_by">
 
-                <a href="<?= __VIEW_LINK__ ?>profile/<?= $s_id ?>"><?= $s_name ." ". $s_surname ?></a>
+                <a href="<?= __URL_BASE__ ?>profile/<?= $s_id ?>"><?= $s_name ." ". $s_surname ?></a>
 
             </div>
 

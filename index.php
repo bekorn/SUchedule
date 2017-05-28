@@ -9,8 +9,11 @@
 
 //  Global File Path Definitions
 define( '__PROJECT_DIR__', 'C:/wamp64/www/betterweb' );
-define( '__LINK_DIR__', '/betterweb/Source' );
-define( '__VIEW_LINK__', '/betterweb/');
+define( '__URL_BASE__', '/');
+
+//  In case of a WAMP localhost host environment
+//define( '__URL_BASE__', '/betterweb/');
+
 
 
 //  Include another php file with parameters
@@ -27,7 +30,7 @@ $mysqli = insert( "/Source/Helper/connector.php" );
 
 //  Parse the Path
 $path = parse_url( $_SERVER['REQUEST_URI'] )['path'];
-$path = array_slice( explode( '/', $path ), 2 );
+$path = array_slice( explode( '/', $path ), 1 );
 
 
 //  Start Session

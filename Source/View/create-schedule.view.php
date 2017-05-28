@@ -19,7 +19,7 @@ $_SESSION['user_full_name'];
 
 <body class="row">
 
-<?php insert( "/Source/Modal/header.modal.php" ) ?>
+<?php insert( "/Source/Modal/header.modal.php", ['current_page' => 'create_schedule']  ) ?>
 
 <div class="full col center">
 
@@ -31,7 +31,7 @@ $_SESSION['user_full_name'];
 
         </div>
 
-        <form id="create_schedule" action="<?=__VIEW_LINK__?>Helper/create_schedule" method="POST">
+        <form id="create_schedule" action="<?=__URL_BASE__?>Source/Helper/create_schedule" method="POST">
 
             <div class="col schedule">
 
