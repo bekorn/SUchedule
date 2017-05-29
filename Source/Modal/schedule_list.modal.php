@@ -7,76 +7,39 @@
  */
 
 /**     Arguments   **/
-$is_long;       //  SS or LTS filter
-$id;            //  [] Schedule filter to pick one
+$is_long;       //  (-1 | 0 | 1 | null) => (none | SS | LTS | all) Schedule Type filter
+$schedule_id;   //  [] Schedule filter to pick one
 $user_id;       //  [] User filter for id
 $user_name;     //  User filter for name or surname
 $name;          //  Schedule filter for name
 $description;   //  Schedule filter for description
 $date;          //  (after) date filter
 
-if( !isset($is_long) ) {
+$is_long = isset( $is_long ) ? $is_long : null;
+$schedule_id = isset( $schedule_id ) ? implode(',', $schedule_id) : null;
+$user_id = isset( $user_id ) ? implode(',', $user_id) : null;
+$user_name = isset( $user_name ) ? $user_name : null;
+$name = isset( $name ) ? $name : null;
+$description = isset( $description ) ? $description : null;
+$date = isset( $date ) ? $date : null;
 
-    $is_long = null;
-}
+$query = http_build_query([
+    'is_long' => $is_long,
+    'schedule_id' => $schedule_id,
+    'user_id' => $user_id,
+    'user_name' => $user_name,
+    'name' => $name,
+    'description' => $description,
+    'date' => $date,
+]);
 
-if( !isset($id) || empty($id) ) {
+$schedules = file_get_contents( __URL_BASE__.'API/schedule_list.api.php?'.$query );
 
-    $id = 'id';
-}
-else {
+//var_dump( json_decode($schedules, true) );
 
-    $id = "'". implode( "','", $id) ."'";
-}
+$schedules = json_decode($schedules, true);
 
-if( !isset($user_id) || empty($user_id) ) {
-
-    $user_id = 's_id';
-}
-else {
-
-    $user_id = "'". implode( "','", $user_id) ."'";
-}
-
-if( !isset($user_name) ) {
-
-    $user_name = null;
-}
-
-$user_name = '%'. $user_name .'%';
-
-if( !isset($name) ) {
-
-    $name = null;
-}
-
-$name = '%'. $name .'%';
-
-if( !isset($description) ) {
-
-    $description = null;
-}
-
-$description = '%'. $description .'%';
-
-if( !isset($date) ) {
-
-    $date = null;
-}
-
-$sql = "SELECT * FROM `latest_schedules` 
-WHERE is_long=COALESCE(?, is_long)
-AND id IN ( ". $id ." )
-AND s_id IN ( ". $user_id ." ) 
-AND ( s_name LIKE ? OR s_surname LIKE ? ) 
-AND (name LIKE ?) AND (description LIKE ? ) 
-AND created_at<=COALESCE(?, created_at)";
-
-$stmt = $mysqli->prepare( $sql );
-$stmt->bind_param( 'isssss', $is_long, $user_name, $user_name, $name, $description, $date  );
-$stmt->execute();
-
-$schedules = $stmt->get_result()->fetch_all( MYSQLI_ASSOC );
+//var_dump( $schedules );
 
 ?>
 

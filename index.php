@@ -9,7 +9,7 @@
 
 //  Global File Path Definitions
 define( '__PROJECT_DIR__', 'C:/wamp64/www/betterweb' );
-define( '__URL_BASE__', '/');
+define( '__URL_BASE__', 'http://betterweb.dev/');
 
 //  In case of a WAMP localhost host environment
 //define( '__URL_BASE__', '/betterweb/');

@@ -111,7 +111,7 @@ $current_page;  //  Current page name to highlight the button
 
         </div>
 
-        <?php if( $current_page ): ?>
+        <?php if( isset($current_page) ): ?>
 
         <script>
 
