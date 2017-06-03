@@ -9,10 +9,23 @@
 
 //  Global File Path Definitions
 define( '__PROJECT_DIR__', 'C:/wamp64/www/betterweb' );
-define( '__URL_BASE__', 'http://betterweb.dev/');
 
-//  In case of a WAMP localhost host environment
-//define( '__URL_BASE__', '/betterweb/');
+switch( $_SERVER['HTTP_HOST'] ) {
+
+    case 'localhost':
+        define( '__URL_BASE__', 'http://localhost/betterweb/');
+        define( '__API_BASE__', 'http://localhost/betterweb/API/');
+        break;
+
+    case 'betterweb.dev':
+        define( '__URL_BASE__', '/');
+        define( '__API_BASE__', 'http://betterweb.dev/API/');
+        break;
+
+    default:
+        define( '__URL_BASE__', '/' );
+        define( '__API_BASE__', 'http://'. $_SERVER['HTTP_HOST'] .'/API/' );
+}
 
 
 
@@ -30,7 +43,10 @@ $mysqli = insert( "/Source/Helper/connector.php" );
 
 //  Parse the Path
 $path = parse_url( $_SERVER['REQUEST_URI'] )['path'];
-$path = array_slice( explode( '/', $path ), 1 );
+$path = explode( '/', $path );
+
+$path_clear = array_search( 'betterweb', $path );
+$path = array_slice( $path,  ($path_clear ? $path_clear : 0) + 1 );
 
 
 //  Start Session
