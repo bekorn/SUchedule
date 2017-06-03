@@ -16,13 +16,13 @@ $description;        //  Schedule filter for description
 $date;               //  (after) date filter
 //  [M] : Can take multiple values separated by commas
 
-$mysqli = include "connector.php";
+include "default_api.php";
 
 $is_long = isset( $_GET['is_long'] ) ? $_GET['is_long'] : null;
 
-$schedule_id = isset( $_GET['$schedule_id'] ) ? "'".$_GET['$schedule_id']."'" : 'id';
+$schedule_id = isset( $_GET['schedule_id'] ) ? $_GET['schedule_id'] : 'id';
 
-$user_id = isset( $_GET['user_id'] ) ? "'".$_GET['user_id']."'" : 's_id';
+$user_id = isset( $_GET['user_id'] ) ? $_GET['user_id'] : 's_id';
 
 $user_name = isset( $_GET['user_name'] ) ? $_GET['user_name'] : null;
 $user_name = '%'. $user_name .'%';
@@ -35,15 +35,17 @@ $description = '%'. $description .'%';
 
 $date = isset( $_GET['date'] ) ? $_GET['date'] : null;
 
-//var_dump( $_GET );
-//
-//var_dump( $is_long );
-//var_dump( $schedule_id );
-//var_dump( $user_id );
-//var_dump( $user_name );
-//var_dump( $name );
-//var_dump( $description );
-//var_dump( $date );
+/*
+var_dump( $_GET );
+
+var_dump( $is_long );
+var_dump( $schedule_id );
+var_dump( $user_id );
+var_dump( $user_name );
+var_dump( $name );
+var_dump( $description );
+var_dump( $date );
+*/
 
 $sql = "SELECT * FROM `latest_schedules` 
 WHERE is_long=COALESCE(?, is_long)

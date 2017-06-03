@@ -33,13 +33,9 @@ $query = http_build_query([
     'date' => $date,
 ]);
 
-$schedules = file_get_contents( __URL_BASE__.'API/schedule_list.api.php?'.$query );
-
-//var_dump( json_decode($schedules, true) );
+$schedules = file_get_contents( __API_BASE__.'schedule_list.api.php?'.$query );
 
 $schedules = json_decode($schedules, true);
-
-//var_dump( $schedules );
 
 ?>
 
@@ -71,28 +67,7 @@ else {
 
 <script>
 
-    $('.schedule .header .like button:not( .liked )').one( 'mousedown', function() {
-
-        var like_counter = $(this).next();
-
-        $(this).css( "animation", "like 0.3s ease-in-out forwards" );
-
-        $.ajax({
-            type: 'POST',
-            url: "<?=__URL_BASE__?>Source/Helper/like" ,
-            data: { is_long : $(this).data("is_long"), id : $(this).data("id") }
-        }).done( function( data ) {
-
-            data = JSON.parse( data );
-            console.log( data );
-
-            if( data.success ) {
-
-                like_counter.text( like_counter.text()*1 + 1 );
-            }
-        });
-
-    });
+	api.append_like_button_events( $('.schedule .header .like button:not( .liked )') );
 
 </script>
 

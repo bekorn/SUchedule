@@ -91,8 +91,6 @@ CREATE TRIGGER `add_current_date_for_ss` BEFORE INSERT ON `semester_schedules`
 FOR EACH ROW SET new.`created_at` = CURRENT_DATE$$
 DELIMITER ;
 
---  TODO: add this trigger to erdplus_diagram
-
 INSERT INTO `semester_schedules` (`creator_id`, `created_at`, `name`, `description`, `likes`) VALUES
 (17679, '2017-01-05', 'First Semester Introduction', 'Which courses you should take on your first year?', 25),
 (17679, '2017-04-14', 'Second Year CS Courses', 'Basics and Mandatories', 13),
@@ -118,8 +116,6 @@ DELIMITER $$
 CREATE TRIGGER `add_current_date_for_lts` BEFORE INSERT ON `long_term_schedules`
 FOR EACH ROW SET new.`created_at` = CURRENT_DATE$$
 DELIMITER ;
-
---  TODO: add this trigger to erdplus_diagram
 
 INSERT INTO `long_term_schedules` (`creator_id`, `created_at`,`name`, `description`, `likes`) VALUES
 (12385, '2017-01-12', 'schcs', 'schedule for cs students for 4 years', 11),
@@ -200,6 +196,14 @@ CREATE TABLE `lts_contains_ss`
   FOREIGN KEY (`lts_id`) REFERENCES `long_term_schedules`(`lts_id`),
   FOREIGN KEY (`ss_id`) REFERENCES `semester_schedules`(`ss_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+
+INSERT INTO `lts_contains_ss` (`lts_id`, `ss_id`) VALUES
+(1, 1),
+(1, 2),
+(6, 2),
+(7, 2),
+(1, 4),
+(6, 4);
 
 -- --------------------------------------------------------
 

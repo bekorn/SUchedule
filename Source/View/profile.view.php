@@ -68,8 +68,6 @@ if( !empty( $_SESSION['user_id'] )  &&  $user['s_id'] == $_SESSION['user_id'] ) 
 
         <?php endif; ?>
 
-
-
     </div>
 
 </div>

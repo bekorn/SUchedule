@@ -21,6 +21,8 @@ $title; //  Title of the Page
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
 
+    <script src="<?=__URL_BASE__?>API/JS/api.js"></script>
+
     <link rel="stylesheet" href="<?=__URL_BASE__?>Source/Style/Compiled/style.css">
 
     <title><?=$title?></title>
