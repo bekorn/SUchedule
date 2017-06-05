@@ -19,7 +19,7 @@ if( isset( $_GET['id'] ) ) {
 }
 else {
 
-    exit_with_error( "Please give 'id' parameter" );
+    return_error( "Please give 'id' parameter" );
 }
 
 
@@ -33,7 +33,7 @@ $schedule = $stmt->get_result()->fetch_assoc();
 //  Check if a schedule had found
 if( $schedule == null ) {
 
-    exit_with_error( "Please give a valid 'id' value" );
+    return_error( "Please give a valid 'id' value" );
 }
 
 
@@ -57,5 +57,4 @@ $result['courses'] = $courses;
 
 
 //  Return $result
-header('Content-Type : application/json');
-echo json_encode( $result );
+return_success( $result );
