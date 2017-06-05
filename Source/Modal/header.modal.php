@@ -30,9 +30,10 @@ $current_page;  //  Current page name to highlight the button
 
                 <!--    Login Form      -->
 
-                <form class="login_form" action="<?=__URL_BASE__?>Source/Helper/login" method="POST">
+                <form class="login_form" onsubmit="return login_form_onsubmit( event )">
 
                     <button id="register_form_toggler" type="button">Not a Member Yet?</button>
+
 
                     <label for="mail">E-Mail</label>
                     <input name="mail" id="mail" type="email">
@@ -42,11 +43,13 @@ $current_page;  //  Current page name to highlight the button
 
                     <input type="submit" value="Login">
 
+                    <div class="error"></div>
+
                 </form>
 
-                <!--    Register Form      -->
+                <!--    Registration Form      -->
 
-                <form class="register_form" action="<?=__URL_BASE__?>Source/Helper/register" method="POST">
+                <form class="register_form" onsubmit="return register_form_onsubmit( event )">
 
                     <label for="name">First Name</label>
                     <input name="name" id="name" type="text">
@@ -65,37 +68,113 @@ $current_page;  //  Current page name to highlight the button
 
                     <input type="submit" value="Register">
 
+                    <div class="error"></div>
+
                 </form>
 
                 <script type="text/javascript">
 
-                    //  Login and Register forms' handlers
+                    //  TODO : Make a proper animation when error happens more than once
 
-                    $('#login_form_toggler').click( function() {
+                    //  Login onsubmit Function
 
-                        $('.login_form').addClass("active");
-                    } );
+					let login_form_onsubmit = function( event ) {
 
-                    $(document).mousedown( function(event) {
+						let form = $( event.target );
+						let mail = form.children( '#mail' ).val();
+						let password = form.children( '#password' ).val();
 
-                        if( !$(event.target).closest('.login_form').length ) {
+						let error = form.children( '.error' );
+						error.removeClass( 'active' );
+						error.text("");
 
-                            $('.login_form').removeClass("active");
-                        }
-                    });
+						let on_success = function( data ) {
 
-                    $('#register_form_toggler').click( function() {
+							if( data['status'] === 'success' ) {
 
-                        $('.register_form').addClass("active");
-                    } );
+								//  Reload page to load user specific elements
+								location.reload();
+							}
+							else {
 
-                    $(document).mousedown( function(event) {
+								error.text( data['value'] );
+								error.addClass( 'active' );
+							}
+						};
 
-                        if( !$(event.target).closest('.register_form').length ) {
+						let request = api.login( mail, password );
+						request.then( on_success );
 
-                            $('.register_form').removeClass("active");
-                        }
-                    });
+						//  Prevent Login form from refreshing the page
+						event.preventDefault();
+						return false;
+					};
+
+					//  Register onsubmit Function
+
+					let register_form_onsubmit = function( event ) {
+
+						let form = $( event.target );
+						let name = form.children( '#name' ).val();
+						let surname = form.children( '#surname' ).val();
+						let mail = form.children( '#mail' ).val();
+						let student_number = form.children( '#student_number' ).val();
+						let password = form.children( '#password' ).val();
+
+						let error = form.children( '.error' );
+						error.removeClass( 'active' );
+						error.text("");
+
+						let on_success = function( data ) {
+
+							if( data['status'] === 'success' ) {
+
+								//  If successful, user also logs in
+								//  Then reload page to load user specific elements
+								location.reload();
+							}
+							else {
+
+								error.text( data['value'] );
+								error.addClass( 'active' );
+							}
+						};
+
+						let request = api.register( name, surname, mail, student_number, password );
+						request.then( on_success );
+
+						//  Prevent Login form from refreshing the page
+						event.preventDefault();
+						return false;
+					};
+
+					//  Login and Register forms' click handlers
+
+					$('#login_form_toggler').click( function() {
+
+						$('.login_form').addClass("active");
+					} );
+
+					$(document).mousedown( function(event) {
+
+						if( !$(event.target).closest('.login_form').length ) {
+
+							$('.login_form').removeClass("active");
+						}
+					});
+
+					$('#register_form_toggler').click( function() {
+
+						$('.register_form').addClass("active");
+					} );
+
+					$(document).mousedown( function(event) {
+
+						if( !$(event.target).closest('.register_form').length ) {
+
+							$('.register_form').removeClass("active");
+						}
+					});
 
                 </script>
 
@@ -105,7 +184,7 @@ $current_page;  //  Current page name to highlight the button
 
                 <a id="header_profile" href="<?=__URL_BASE__?>profile/<?= $_SESSION['user_id'] ?>">Profile</a>
 
-                <a href="<?=__URL_BASE__?>Source/Helper/logout">Log Out</a>
+                <span onclick="api.logout().then( () => location.reload() )">Log Out</span>
 
             <?php endif ?>
 

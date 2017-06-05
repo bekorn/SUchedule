@@ -67,7 +67,7 @@ else {
 
 <script>
 
-	api.append_like_button_events( $('.schedule .header .like button:not( .liked )') );
+	append_like_button_events( $('.schedule .header .like button:not( .liked )') );
 
 </script>
 
