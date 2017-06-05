@@ -2,6 +2,7 @@
  * Created by Berk on 31.05.2017.
  */
 
+//  TODO : Implement vanilla AJAX requests and remove JQuery dependency
 ///<reference path="jquery.d.ts"/>
 
 class Betterweb {
@@ -23,53 +24,99 @@ class Betterweb {
 
     info = {
         name: "betterweb API for JS",
-        version: "0.0.0",
+        version: "0.0.0.0",
         API_URL : "/API/"
     };
 
-    authentication() {
-
-    }
-
-    get_ss( id : number,
-            on_complete? : ( data : JSON ) => any,
-            on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<JSON> {
+    /**User Login / Authentication
+     *
+     * Logs in user. If successful server session is set. Authentication required for further operations granted.
+     * May switch to token system in future
+     *
+     * @param mail
+     * @param password
+     * @param on_complete
+     * @param on_error
+     * @returns {Promise<JSON>}
+     */
+    login( mail : string, password : string,
+           on_complete? : ( data : JSON ) => any,
+           on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<object> {
 
         return new Promise( ( resolve, reject ) => {
 
             $.ajax({
                 method: 'POST',
-                url: this.info.API_URL + "semester_schedule.api.php",
-                data: { id : id },
+                url: this.info.API_URL + "login.api.php",
+                data: { mail : mail, password : password },
                 success: data => resolve( JSON.parse( data ) ),
                 error : ( jqXHR : JQueryXHR, status : string, error_message : string ) => reject({ 'status' : status, 'error_message' : error_message })
             });
+
         })
         .then( on_complete )
         .catch( on_error );
     }
 
-    get_lts( id : number,
-            on_complete? : ( data : JSON ) => any,
-            on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<JSON> {
+    logout( on_complete? : ( data : JSON ) => any,
+            on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<object> {
 
-        return new Promise<JSON>( ( resolve, reject ) => {
+        return new Promise( ( resolve, reject ) => {
 
             $.ajax({
                 method: 'POST',
-                url: this.info.API_URL + "semester_schedule.api.php",
-                data: { id : id },
+                url: this.info.API_URL + "logout.api.php",
+                data: {},
                 success: data => resolve( JSON.parse( data ) ),
                 error : ( jqXHR : JQueryXHR, status : string, error_message : string ) => reject({ 'status' : status, 'error_message' : error_message })
             });
+
         })
         .then( on_complete )
         .catch( on_error );
     }
 
+    /**New User Registration
+     *
+     * @param name
+     * @param surname
+     * @param mail
+     * @param student_number
+     * @param password
+     * @param on_complete
+     * @param on_error
+     * @returns {Promise<JSON>}
+     */
+    register( name : string, surname : string, mail : string, student_number : string, password : string,
+              on_complete? : ( data : JSON ) => any,
+              on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<object> {
+
+        return new Promise( ( resolve, reject ) => {
+
+            $.ajax({
+                method: 'POST',
+                url: this.info.API_URL + "register.api.php",
+                data: { name : name,  surname : surname,  mail  : mail, student_number : student_number,  password : password},
+                success: data => resolve( JSON.parse( data ) ),
+                error : ( jqXHR : JQueryXHR, status : string, error_message : string ) => reject({ 'status' : status, 'error_message' : error_message })
+            });
+
+        })
+        .then( on_complete )
+        .catch( on_error );
+    }
+
+    /**Like Schedule
+     *
+     * @param is_long
+     * @param id
+     * @param on_complete
+     * @param on_error
+     * @returns {Promise<JSON>}
+     */
     like_schedule( is_long : number, id : number,
-                   on_complete? : ( data : JSON ) => any,
-                   on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<JSON> {
+                   on_complete? : ( data : object ) => any,
+                   on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<object> {
 
         return new Promise<JSON>((resolve, reject) => {
 
@@ -81,41 +128,64 @@ class Betterweb {
                 error : ( jqXHR : JQueryXHR, status : string, error_message : string ) => reject({ 'status' : status, 'error_message' : error_message })
             });
         })
+            .then( on_complete )
+            .catch( on_error );
+    }
+
+
+
+    /*  Schedule Getters  */
+
+    /**Get the Semester Schedule with matching id
+     *
+     * @param id
+     * @param on_complete
+     * @param on_error
+     * @returns {Promise<Object>}
+     */
+    get_ss( id : number,
+            on_complete? : ( data : object ) => any,
+            on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<object> {
+
+        return new Promise( ( resolve, reject ) => {
+
+            $.ajax({
+                method: 'POST',
+                url: this.info.API_URL + "semester_schedule.api.php",
+                data: { id : id },
+                success: data => resolve( JSON.parse( data ) ),
+                error : ( jqXHR : JQueryXHR, status : string, error_message : string ) => reject({ 'status' : status, 'error_message' : error_message })
+            });
+
+        })
         .then( on_complete )
         .catch( on_error );
     }
 
+    /**Get the Long Term Schedule with matching id
+     *
+     * @param id
+     * @param on_complete
+     * @param on_error
+     * @returns {Promise<Object>}
+     */
+    get_lts( id : number,
+            on_complete? : ( data : object ) => any,
+            on_error : ( error : object ) => any = ( error ) => { console.log( error['status'], error['error_message'] ); } ) : Promise<object> {
 
-    /*      Dom Helpers     */
+        return new Promise( ( resolve, reject ) => {
 
-    append_like_button_events( buttons : JQuery ) {
-
-        buttons.one( 'mousedown', function() {
-
-            let like_counter : JQuery = $(this).next();
-            let is_long : number = $(this).data("is_long");
-            let id : number = $(this).data("id");
-
-            let promise = Betterweb.api().like_schedule( is_long, id );
-
-            promise.then( ( data : JSON ) => {
-
-                console.log( data );
-
-                if( data['success'] ) {
-
-                    $(this).css( "animation", "like 0.3s ease-in-out forwards" );
-                    like_counter.text( Number( like_counter.text() ) + 1 );
-                }
-                else {
-
-                    console.log( "Error occured" );
-                }
+            $.ajax({
+                method: 'POST',
+                url: this.info.API_URL + "semester_schedule.api.php",
+                data: { id : id },
+                success: data => resolve( JSON.parse( data ) ),
+                error : ( jqXHR : JQueryXHR, status : string, error_message : string ) => reject({ 'status' : status, 'error_message' : error_message })
             });
-        });
+
+        })
+        .then( on_complete )
+        .catch( on_error );
     }
 
-
 }
-
-let api = Betterweb.api();
