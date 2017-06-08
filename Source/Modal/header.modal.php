@@ -30,10 +30,9 @@ $current_page;  //  Current page name to highlight the button
 
                 <!--    Login Form      -->
 
-                <form class="login_form" onsubmit="return login_form_onsubmit( event )">
+                <form class="login_form" onsubmit="return login_form_onsubmit( event )" method="POST">
 
                     <button id="register_form_toggler" type="button">Not a Member Yet?</button>
-
 
                     <label for="mail">E-Mail</label>
                     <input name="mail" id="mail" type="email">
@@ -49,7 +48,7 @@ $current_page;  //  Current page name to highlight the button
 
                 <!--    Registration Form      -->
 
-                <form class="register_form" onsubmit="return register_form_onsubmit( event )">
+                <form class="register_form" onsubmit="return register_form_onsubmit( event )" method="POST">
 
                     <label for="name">First Name</label>
                     <input name="name" id="name" type="text">
@@ -72,7 +71,7 @@ $current_page;  //  Current page name to highlight the button
 
                 </form>
 
-                <script type="text/javascript">
+                <script>
 
                     //  TODO : Make a proper animation when error happens more than once
 
