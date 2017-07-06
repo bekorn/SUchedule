@@ -6,14 +6,12 @@
  * Time: 08:46
  */
 
+include "default_api.php";
+
 session_start();
 
 session_unset();
 
 session_destroy();
 
-?>
-
-<script>
-    window.history.go(-1);
-</script>
+return_success( 'Logged Out' );

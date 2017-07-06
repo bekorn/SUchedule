@@ -15,7 +15,7 @@
 
 <body class="row">
 
-<?php insert( "/Source/Modal/header.modal.php" ) ?>
+<?php insert( "/Source/Modal/header.modal.php", ['current_page' => 'home'] ) ?>
 
 <div class="full col center">
 
@@ -55,7 +55,7 @@
 
             <p>
 
-                Why not create a schedule for yourself! Just go to <a href="<?= __VIEW_LINK__ ?>create-schedule">+ Schedule</a>.
+                Why not create a schedule for yourself! Just go to <a href="<?= __URL_BASE__ ?>create-schedule">+ Schedule</a>.
 
             </p>
 

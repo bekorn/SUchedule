@@ -9,8 +9,7 @@
 /**     Arguments   **/
 $course_key;    //  [] Course ID filter (has two column: cdn, term)
 $instructor_id; //  [] Instructor ID filter
-$hours;         //  Filter for hours
-$credit;        //  Filter for credit
+$su_credit;     //  Filter for credit
 $rating;        //  (bottom limit) Filter for rating
 
 if( !isset($course_key) || empty($course_key) ) {
@@ -31,14 +30,9 @@ else {
     $instructor_id = "'". implode( "','", $instructor_id) ."'";
 }
 
-if( !isset($hours) ) {
+if( !isset($su_credit) ) {
 
-    $hours = null;
-}
-
-if( !isset($credit) ) {
-
-    $credit = null;
+    $su_credit = null;
 }
 
 if( !isset($rating) ) {
@@ -48,11 +42,10 @@ if( !isset($rating) ) {
 
 $sql = "SELECT * FROM `courses` 
 WHERE (cdn, term) IN ( ". $course_key ." ) 
-AND hours = COALESCE(?, hours) 
-AND credit = COALESCE(?, credit) ";
+AND su_credit = COALESCE(?, su_credit) ";
 
 $stmt = $mysqli->prepare( $sql );
-$stmt->bind_param( 'ii', $hours, $credit );
+$stmt->bind_param( 'i', $credit );
 $stmt->execute();
 
 $courses = $stmt->get_result()->fetch_all( MYSQLI_ASSOC );

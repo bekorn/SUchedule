@@ -6,16 +6,15 @@
  * Time: 22:12
  */
 
-$mysqli = include "connector.php";
+include "default_api.php";
 
 if( !isset($_POST['is_long'], $_POST['id']) ) {
 
-    echo json_encode( ['success' => false] );
-    exit();
+    exit( json_encode( ['error' => 'Insufficient parameters'] ) );
 }
 
-$is_long = $_POST['is_long'];
-$id = $_POST['id'];
+$is_long = (int) $_POST['is_long'];
+$id = (int) $_POST['id'];
 
 if( $is_long == 0 ) {
 
@@ -32,4 +31,8 @@ $stmt->execute();
 
 header('Content-Type : application/json');
 
-echo json_encode( ['success' => ($stmt->affected_rows ? true : false)] );
+$result['is_long'] = $is_long;
+$result['id'] = $id;
+$result['success'] = ($stmt->affected_rows ? true : false);
+
+exit( json_encode( $result ) );

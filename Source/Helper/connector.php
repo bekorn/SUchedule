@@ -10,14 +10,12 @@ $mysqli = new mysqli("localhost", "root", "", "betterweb");
 
 if( $mysqli->connect_errno ) {
 
-    echo "Connection Error -> " . $mysqli->connect_error;
-    exit();
+    exit( "Connection Error -> " . $mysqli->connect_error );
 }
 
 if( !$mysqli->set_charset( 'utf8' ) ) {
 
-    echo "UTF8 Charset couldn't loaded. Error -> " . $mysqli->error;
-    exit();
+    exit( "UTF8 Charset couldn't loaded. Error -> " . $mysqli->error );
 }
 
 return $mysqli;

@@ -33,7 +33,7 @@ if( !empty( $_SESSION['user_id'] )  &&  $user['s_id'] == $_SESSION['user_id'] ) 
 
 <body class="row">
 
-<?php insert( "/Source/Modal/header.modal.php" ) ?>
+<?php insert( "/Source/Modal/header.modal.php", ['current_page' => ($self ? 'profile' : null)] ) ?>
 
 <div class="full col center">
 
@@ -67,8 +67,6 @@ if( !empty( $_SESSION['user_id'] )  &&  $user['s_id'] == $_SESSION['user_id'] ) 
         <?php insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'user_id' => [$user['s_id']]]) ?>
 
         <?php endif; ?>
-
-
 
     </div>
 

@@ -129,6 +129,9 @@ button, input[type="submit"] {
     background-color: #2980b9; }
 
 #header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   margin-bottom: 10px;
   background-color: #2980b9; }
   #header .container {
@@ -144,6 +147,7 @@ button, input[type="submit"] {
     flex-basis: 120px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     font-family: "Oxygen", sans-serif;
     font-size: inherit;
     color: ghostwhite;
@@ -152,6 +156,8 @@ button, input[type="submit"] {
     transition: 0.3s all ease-in-out; }
     #header_menu > *:focus {
       outline: none; }
+    #header_menu > *.active {
+      box-shadow: inset 0 -3px 0 ghostwhite; }
     #header_menu > *:not(.login_form):not(.register_form):not(.login_form):hover, #header_menu > *:not(.login_form):not(.register_form):not(.login_form):focus {
       box-shadow: inset 0 -3px 0 ghostwhite; }
   #header_menu > .menu_divider, #header_menu > :last-child, #header_menu > form {
@@ -195,6 +201,16 @@ button, input[type="submit"] {
     .register_form > input[type="submit"], .login_form > input[type="submit"] {
       margin: 10px 40px;
       margin-bottom: 5px; }
+  .register_form > .error, .login_form > .error {
+    height: 0;
+    justify-content: center;
+    margin-top: 10px;
+    background-color: tomato;
+    font-size: 0.8em;
+    transition: all 0.3s ease-in; }
+    .register_form > .error.active, .login_form > .error.active {
+      height: unset;
+      padding: 10px; }
 
 .login_form > button {
   margin-bottom: 18px;

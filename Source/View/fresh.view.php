@@ -15,7 +15,7 @@
 
 <body class="row">
 
-<?php insert( "/Source/Modal/header.modal.php" ) ?>
+<?php insert( "/Source/Modal/header.modal.php", ['current_page' => 'fresh'] ) ?>
 
 <div class="full col center">
 

@@ -6,13 +6,16 @@
  * Time: 01:18
  */
 
+/** Arguments   **/
+$is_long;   //  ( lt | s ) path value
+$id;        //  id of the schedule
+
 $sql = "SELECT * FROM `latest_schedules` WHERE is_long=? AND id=?";
 $stmt = $mysqli->prepare( $sql );
 $stmt->bind_param( 'ii', $is_long, $id  );
 $stmt->execute();
 
 $schedule = $stmt->get_result()->fetch_array( MYSQLI_ASSOC );
-
 
 if( $schedule ) {
 
@@ -61,17 +64,17 @@ if( $schedule ) {
 
                 //  Show Long Term Schedule
                 echo "<h2>Long Term Schedule</h2>";
-                insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'is_long' => 1, 'id' => [$schedule['id']]]);
+                insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'is_long' => 1, 'schedule_id' => [$schedule['id']]]);
 
                 //  Show what it contains
                 echo "<h2>Semester Schedules It Has</h2>";
-                insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'is_long' => 0, 'id' => array_column($contains, 'ss_id')]);
+                insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'is_long' => 0, 'schedule_id' => array_column($contains, 'ss_id')]);
             }
             else {
 
                 //  Show Semester Schedule
                 echo "<h2>Semester Schedule</h2>";
-                insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'is_long' => 0, 'id' => [$schedule['id']]]);
+                insert( "/Source/Modal/schedule_list.modal.php" , ['mysqli' => $mysqli, 'is_long' => 0, 'schedule_id' => [$schedule['id']]]);
 
                 //  Show what it contains
                 echo "<h2>Courses It Has</h2>";

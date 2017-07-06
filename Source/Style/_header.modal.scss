@@ -2,6 +2,9 @@ $header_height : 36px;
 $header_menu_item_width : 120px;
 
 #header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   margin-bottom: 10px;
   background-color: #2980b9;
 
@@ -22,6 +25,7 @@ $header_menu_item_width : 120px;
     justify-content: center;
     align-items: center;
 
+    cursor: pointer;
     font-family: $header_font;
     font-size: inherit;
     color: $negative_text_color;
@@ -34,11 +38,14 @@ $header_menu_item_width : 120px;
       outline: none;
     }
 
+    &.active {
+      box-shadow: inset 0 -3px 0 $negative_text_color;
+    }
+
     &:not( .login_form ):not( .register_form ) {
 
       &:hover, &:focus {
         box-shadow: inset 0 -3px 0 $negative_text_color;
-
       }
     }
   }
@@ -102,6 +109,22 @@ $header_menu_item_width : 120px;
 
       margin: 10px 40px;
       margin-bottom: 5px;
+    }
+  }
+
+  & > .error {
+    height: 0;
+    justify-content: center;
+    margin-top: 10px;
+
+    background-color: tomato;
+    font-size: 0.8em;
+
+    transition: all 0.3s ease-in;
+
+    &.active {
+      height: unset;
+      padding: 10px;
     }
   }
 }
