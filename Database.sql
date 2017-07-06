@@ -1,6 +1,8 @@
 
 --  This file contains all tables, views, triggers and procedures used in this project.
 
+-- sqlizer.io is used to convert JSON files (scrapped data) into SQL statements
+
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS;
 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION;
