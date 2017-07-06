@@ -7,3 +7,5 @@
 :books: Combine multiple schedules to plan your courses over years.
 
 :busts_in_silhouette: Help others by sharing them!
+
+I still can't figure branches out...
