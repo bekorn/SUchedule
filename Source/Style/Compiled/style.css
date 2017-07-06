@@ -129,6 +129,9 @@ button, input[type="submit"] {
     background-color: #2980b9; }
 
 #header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   margin-bottom: 10px;
   background-color: #2980b9; }
   #header .container {

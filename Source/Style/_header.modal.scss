@@ -2,6 +2,9 @@ $header_height : 36px;
 $header_menu_item_width : 120px;
 
 #header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   margin-bottom: 10px;
   background-color: #2980b9;
 

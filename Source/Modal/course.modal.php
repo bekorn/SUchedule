@@ -9,13 +9,15 @@
 /** Arguments   **/
 $cdn;               //  CDN of course
 $term;              //  term of course
-$description;       //  description
+$title;             //  Long name of the corse
+$code;              // Generic code of the course
+//$description;       //  description       TODO : Add description for courses
 $hours;             //  hours of course
-$credit;            //
-$rating;            //  rating
-$number_of_ratings; //  amount of rating
+$su_credit;         //
+$rating;            //
+$number_of_ratings; //
 $section;           //  nullable
-$section_number;    //  nullable
+//$section_number;    //  nullable          TODO : Seperating section numbers from section might be handy
 $lecturer_name = 'Lecturer';
 
 ?>
@@ -35,7 +37,7 @@ $lecturer_name = 'Lecturer';
 
             <div class="name">
 
-                <?= $description ?>
+                <?= $title . " - " . $code ?>
 
             </div>
 
@@ -53,15 +55,15 @@ $lecturer_name = 'Lecturer';
 
             <div class="rating">
 
-                <button type="button"">👍</button>
+                <button type="button">👍</button>
 
                 <inline>
 
-                    <?= $rating ?>
+                    <?= $rating ? $rating : "~" ?>
 
                 </inline>
 
-                <button type="button"">👎</button>
+                <button type="button">👎</button>
 
             </div>
 
@@ -69,7 +71,7 @@ $lecturer_name = 'Lecturer';
 
         <div class="col body">
 
-            <?= $description ?>
+            <?= "Put description here" ?>
 
         </div>
 
