@@ -1,11 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
 class MonoSchedule extends Model
 {
+//    protected $with = ['courses'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

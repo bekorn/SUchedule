@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\MonoSchedule;
-use App\Repositories\MonoScheduleRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class MonoScheduleController extends Controller
+class UserController extends Controller
 {
-    protected $mono_schedule_repo;
+    protected $user_repo;
 
-    function __construct(MonoScheduleRepository $mono_schedule_repository)
+    function __construct( UserRepository $user_repository )
     {
-        $this->mono_schedule_repo = $mono_schedule_repository;
+        $this->user_repo = $user_repository;
     }
 
     /**
@@ -49,22 +48,21 @@ class MonoScheduleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
-     * @internal param MonoSchedule $mono_schedule
      */
-    public function show(int $id)
+    public function show (int $id)
     {
-        return $this->mono_schedule_repo->with('users_liked', 'courses')->find( $id );
+        return $this->user_repo->find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\MonoSchedule  $mono_schedule
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(\App\Model\MonoSchedule $mono_schedule)
+    public function edit($id)
     {
         //
     }
@@ -73,10 +71,10 @@ class MonoScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\MonoSchedule  $mono_schedule
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, \App\Model\MonoSchedule $mono_schedule)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -84,10 +82,10 @@ class MonoScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\MonoSchedule  $mono_schedule
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MonoSchedule $mono_schedule)
+    public function destroy($id)
     {
         //
     }

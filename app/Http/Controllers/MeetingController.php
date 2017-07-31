@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Meeting;
+use App\Model\Meeting;
+use App\Repositories\MeetingRepository;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller
 {
+    protected $meeting_repo;
+    
+    function __construct(MeetingRepository $meeting_repository)
+    {
+        $this->meeting_repo = $meeting_repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +49,7 @@ class MeetingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Meeting  $meeting
+     * @param  \App\Model\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
     public function show(Meeting $meeting)
@@ -52,7 +60,7 @@ class MeetingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Meeting  $meeting
+     * @param  \App\Model\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
     public function edit(Meeting $meeting)
@@ -64,7 +72,7 @@ class MeetingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Meeting  $meeting
+     * @param  \App\Model\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Meeting $meeting)
@@ -75,7 +83,7 @@ class MeetingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Meeting  $meeting
+     * @param  \App\Model\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
     public function destroy(Meeting $meeting)

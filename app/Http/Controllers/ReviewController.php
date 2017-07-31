@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Review;
+use App\Repositories\ReviewRepository;
+use App\Model\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+    protected $review_repo;
+
+    function __construct(ReviewRepository $review_repository)
+    {
+        $this->review_repo = $review_repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +49,7 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Model\Review  $review
      * @return \Illuminate\Http\Response
      */
     public function show(Review $review)
@@ -52,7 +60,7 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Model\Review  $review
      * @return \Illuminate\Http\Response
      */
     public function edit(Review $review)
@@ -64,7 +72,7 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Review  $review
+     * @param  \App\Model\Review  $review
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Review $review)
@@ -75,7 +83,7 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Model\Review  $review
      * @return \Illuminate\Http\Response
      */
     public function destroy(Review $review)
