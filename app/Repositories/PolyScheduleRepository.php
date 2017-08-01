@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\PolySchedule;
+use App\Models\PolySchedule;
 
 class PolyScheduleRepository extends Repository
 {

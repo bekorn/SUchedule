@@ -20,7 +20,7 @@
       <option name="workingDir" value="$ProjectFileDir$/Source/Style/" />
       <envs />
     </TaskOptions>
-    <TaskOptions isEnabled="true">
+    <TaskOptions isEnabled="false">
       <option name="arguments" value="$FilePathRelativeToProjectRoot$ --out-dir ./ --source-maps" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />

@@ -2,17 +2,17 @@
 
 /*
 |--------------------------------------------------------------------------
-| Model Factories
+| Models Factories
 |--------------------------------------------------------------------------
 |
-| Here you may define all of your model factories. Model factories give
+| Here you may define all of your model factories. Models factories give
 | you a convenient way to create models for testing and seeding your
 | database. Just tell the factory how a default model should look.
 |
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker)
+$factory->define(App\Models\User::class, function (Faker\Generator $faker)
 {
     return [
         'name' => $faker->firstName(),
@@ -25,7 +25,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\Instructor::class, function (Faker\Generator $faker)
+$factory->define(App\Models\Instructor::class, function (Faker\Generator $faker)
 {
     return [
         'name' => $faker->name(),
@@ -35,7 +35,7 @@ $factory->define(App\Instructor::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\Requirement::class, function (Faker\Generator $faker)
+$factory->define(App\Models\Requirement::class, function (Faker\Generator $faker)
 {
     static $max = 30;
     static $counter = 0;
@@ -47,7 +47,7 @@ $factory->define(App\Requirement::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\Course::class, function (Faker\Generator $faker)
+$factory->define(App\Models\Course::class, function (Faker\Generator $faker)
 {
     static $counter = 0;
     $counter++;
@@ -71,7 +71,7 @@ $factory->define(App\Course::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\Meeting::class, function (Faker\Generator $faker)
+$factory->define(App\Models\Meeting::class, function (Faker\Generator $faker)
 {
     return [
         'day' => $faker->randomElement(['M', 'T', 'W', 'R', 'F']),
@@ -84,7 +84,7 @@ $factory->define(App\Meeting::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\Review::class, function (Faker\Generator $faker)
+$factory->define(App\Models\Review::class, function (Faker\Generator $faker)
 {
     return [
         'body' => $faker->text(),
@@ -93,7 +93,7 @@ $factory->define(App\Review::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\MonoSchedule::class, function (Faker\Generator $faker)
+$factory->define(App\Models\MonoSchedule::class, function (Faker\Generator $faker)
 {
     return [
         'name' => $faker->text(25),
@@ -101,7 +101,7 @@ $factory->define(App\MonoSchedule::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\PolySchedule::class, function (Faker\Generator $faker)
+$factory->define(App\Models\PolySchedule::class, function (Faker\Generator $faker)
 {
     return [
         'name' => $faker->text(25),

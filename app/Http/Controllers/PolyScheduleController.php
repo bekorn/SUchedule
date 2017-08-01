@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\PolySchedule;
+use App\Models\PolySchedule;
 use App\Repositories\PolyScheduleRepository;
 use Illuminate\Http\Request;
 
@@ -61,7 +61,7 @@ class PolyScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\PolySchedule  $polySchedule
+     * @param  \App\Models\PolySchedule  $polySchedule
      * @return \Illuminate\Http\Response
      */
     public function edit(PolySchedule $polySchedule)
@@ -73,7 +73,7 @@ class PolyScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\PolySchedule  $polySchedule
+     * @param  \App\Models\PolySchedule  $polySchedule
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PolySchedule $polySchedule)
@@ -84,7 +84,7 @@ class PolyScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\PolySchedule  $polySchedule
+     * @param  \App\Models\PolySchedule  $polySchedule
      * @return \Illuminate\Http\Response
      */
     public function destroy(PolySchedule $polySchedule)

@@ -2,13 +2,11 @@
 
 namespace App\Repositories;
 
-
 use App\Repositories\Exceptions\WrongRepositoryModelException;
 use App\Repositories\Interfaces\RepositoryInterface;
-use Barryvdh\Debugbar\Middleware\Debugbar;
-use DebugBar\DebugBarException;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 abstract class Repository implements RepositoryInterface
 {
@@ -23,7 +21,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * Specify Model class name
+     * Specify Models class name
      * @return string $model_class_name
      */
     abstract public function model ();
@@ -34,7 +32,7 @@ abstract class Repository implements RepositoryInterface
 
         if( ! $model instanceof Model )
         {
-            throw new WrongRepositoryModelException( $this->model() .' is not a valid Model for '. __CLASS__ );
+            throw new WrongRepositoryModelException( $this->model() .' is not a valid Models for '. __CLASS__ );
         }
 
         $this->model = $model;
@@ -75,9 +73,21 @@ abstract class Repository implements RepositoryInterface
         return $this->model->where( $field, '=', $value )->get( $columns );
     }
 
-    public function with(...$relations)
+    public function with(string ...$relations)
     {
         $this->model = $this->model->with( ...$relations );
+        return $this;
+    }
+
+    public function scope(Scope ...$scopes)
+    {
+        $model = $this->model;
+
+        foreach ($scopes as $scope) {
+            $model->$scope();
+        }
+
+        $this->model = $model;
         return $this;
     }
 }

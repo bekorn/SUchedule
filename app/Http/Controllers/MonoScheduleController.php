@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\MonoSchedule;
+use App\Models\MonoSchedule;
 use App\Repositories\MonoScheduleRepository;
 use Illuminate\Http\Request;
 
@@ -61,10 +61,10 @@ class MonoScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\MonoSchedule  $mono_schedule
+     * @param  \App\Models\MonoSchedule  $mono_schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(\App\Model\MonoSchedule $mono_schedule)
+    public function edit(\App\Models\MonoSchedule $mono_schedule)
     {
         //
     }
@@ -73,10 +73,10 @@ class MonoScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\MonoSchedule  $mono_schedule
+     * @param  \App\Models\MonoSchedule  $mono_schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, \App\Model\MonoSchedule $mono_schedule)
+    public function update(Request $request, \App\Models\MonoSchedule $mono_schedule)
     {
         //
     }
@@ -84,7 +84,7 @@ class MonoScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\MonoSchedule  $mono_schedule
+     * @param  \App\Models\MonoSchedule  $mono_schedule
      * @return \Illuminate\Http\Response
      */
     public function destroy(MonoSchedule $mono_schedule)

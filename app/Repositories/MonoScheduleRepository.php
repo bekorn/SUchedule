@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\MonoSchedule;
+use App\Models\MonoSchedule;
 
 class MonoScheduleRepository extends Repository
 {

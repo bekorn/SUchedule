@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Model\Review;
+use App\Models\Review;
 
 class ReviewRepository extends Repository
 {

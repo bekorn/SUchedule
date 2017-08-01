@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\Instructor;
+use App\Models\Instructor;
 
 class InstructorRepository extends Repository
 {

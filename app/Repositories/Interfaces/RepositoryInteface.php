@@ -3,6 +3,8 @@
 namespace App\Repositories\Interfaces;
 
 
+use Illuminate\Database\Eloquent\Scope;
+
 interface RepositoryInterface
 {
     public function all($columns = ['*']);
@@ -20,5 +22,7 @@ interface RepositoryInterface
 //    public function findBy($field, $value, $columns = ['*']);
     public function where($field, $value, $columns = ['*']);
 
-    public function with(...$relations);
+    public function with(string ...$relations);
+
+    public function scope(Scope ...$scopes);
 }

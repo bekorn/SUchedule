@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\Meeting;
+use App\Models\Meeting;
 
 class MeetingRepository extends Repository
 {

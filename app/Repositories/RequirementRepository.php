@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Model\Course;
-use App\Model\Requirement;
+use App\Models\Course;
+use App\Models\Requirement;
 
 class RequirementRepository extends Repository
 {
