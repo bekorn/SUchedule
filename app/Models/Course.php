@@ -23,7 +23,7 @@ class Course extends Model
 
     public function instructors()
     {
-        return $this->belongsToMany(Instructor::class);
+        return $this->belongsToMany(Instructor::class)->withPivot('primary');
     }
 
     public function meetings()

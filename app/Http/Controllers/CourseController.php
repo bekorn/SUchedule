@@ -21,6 +21,7 @@ class CourseController extends Controller
 
     public function index ()
     {
-        return $this->course_repo->all();
+        $courses = $this->course_repo->with('instructors', 'meetings', 'requirements')->paginate(12);
+        return view('courses.index', ['courses' => $courses] );
     }
 }

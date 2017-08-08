@@ -14,4 +14,13 @@ class InstructorController extends Controller
         $this->instructor_repo = $instructor_repository;
     }
 
+    public function index()
+    {
+        return 'all instructors';
+    }
+
+    public function show(int $id)
+    {
+        return $this->instructor_repo->find($id);
+    }
 }

@@ -29,6 +29,11 @@ Route::prefix('course')->group( function () {
     Route::get('{course}/requirement', 'RequirementController@show')->name('requirement');
 });
 
+Route::prefix('instructor')->group( function () {
+    Route::get('/', 'InstructorController@index');
+    Route::get('/{instructor}', 'InstructorController@show')->name('instructor');
+});
+
 Route::prefix('mono-schedule')->group( function () {
     Route::get('{mono_schedule}', 'MonoScheduleController@show');
 });
