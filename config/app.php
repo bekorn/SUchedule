@@ -181,7 +181,7 @@ return [
          * Extra Packages
          */
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -235,6 +235,7 @@ return [
          * Packages
          */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

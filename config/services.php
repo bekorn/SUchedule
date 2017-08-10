@@ -30,9 +30,17 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
+        'model' => App\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+    ],
+
+
+
+    'google' => [
+        'client_id' => getenv('GOOGLE_APP_ID'),
+        'client_secret' => getenv('GOOGLE_APP_SECRET'),
+        'redirect' => 'http://betterweb.dev:8000/google-auth-callback',
     ],
 
 ];
