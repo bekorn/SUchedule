@@ -8,6 +8,6 @@ class UserRepository extends Repository
 {
     public function model()
     {
-        return USer::class;
+        return User::class;
     }
 }

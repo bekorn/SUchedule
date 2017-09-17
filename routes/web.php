@@ -11,12 +11,21 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::namespace('Auth')->group( function () {
+
+    Route::prefix('/login')->group( function () {
+        Route::get('/', 'LoginController@loginPage')->name('login');
+        Route::get('/google-auth-redirect', 'LoginController@redirectToProvider')->name('google-auth');
+        Route::get('/google-auth-callback', 'LoginController@handleProviderCallback');
+    });
+
+    Route::get('/logout', 'LoginController@logout')->name('logout');
 });
 
 Route::prefix('user')->group( function () {
@@ -24,13 +33,13 @@ Route::prefix('user')->group( function () {
 });
 
 Route::prefix('course')->group( function () {
-    Route::get('/', 'CourseController@index');
+    Route::get('/', 'CourseController@index')->name('courses');
     Route::get('{course}', 'CourseController@show')->name('course');
     Route::get('{course}/requirement', 'RequirementController@show')->name('requirement');
 });
 
 Route::prefix('instructor')->group( function () {
-    Route::get('/', 'InstructorController@index');
+    Route::get('/', 'InstructorController@index')->name('instructors');
     Route::get('/{instructor}', 'InstructorController@show')->name('instructor');
 });
 
@@ -41,6 +50,3 @@ Route::prefix('mono-schedule')->group( function () {
 Route::prefix('poly-schedule')->group( function () {
     Route::get('{poly_schedule}', 'PolyScheduleController@show');
 });
-
-
-

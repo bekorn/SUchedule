@@ -3,37 +3,70 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use App\Repositories\UserRepository;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+    protected $user_repo;
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(UserRepository $user_repository)
     {
-        $this->middleware('guest')->except('logout');
+        $this->user_repo = $user_repository;
+    }
+
+    public function loginPage()
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('google')->stateless()->user();
+
+        if( Arr::get($user->user, 'domain') != 'sabanciuniv.edu' ) {
+            return redirect('/login')->withErrors('Invalid email domain. Only @sabanciuniv.edu users can login this system.');
+        }
+
+        $my_user = $this->user_repo->where('email', $user->email)->first();
+
+        if( is_null($my_user) ) {
+            $my_user = $this->user_repo->create([
+                'given_name' => $user->user['name']['givenName'],
+                'family_name' => $user->user['name']['familyName'],
+                'email' => $user->email,
+                'google_token' => $user->token,
+                'avatar_url' => $user->avatar_original,
+            ]);
+        }
+
+        Auth::login($my_user);
+
+        return redirect('/home');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('home');
     }
 }

@@ -15,12 +15,12 @@
 $factory->define(App\Models\User::class, function (Faker\Generator $faker)
 {
     return [
-        'name' => $faker->firstName(),
-        'surname' => $faker->lastName(),
+        'given_name' => $faker->firstName(),
+        'family_name' => $faker->lastName(),
         'email' => function ($self) {
-            return $self['name'] . $self['surname'] . '@sabanciuniv.edu';
+            return $self['given_name'] . $self['family_name'] . '@sabanciuniv.edu';
         },
-        'password' => bcrypt('secret'),
+        'avatar_url' => 'http://lorempixel.com/240/240/people',
         'remember_token' => str_random(10),
     ];
 });

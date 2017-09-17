@@ -29,16 +29,16 @@ class DatabaseSeeder extends Seeder
 
 
 
-        factory( App\User::class, $size )->create();
+        factory( App\Models\User::class, $size )->create();
 //            ->each( function ($u) {
-//                $u->mono_schedules()->saveMany( factory( App\MonoSchedule::class, mt_rand(0, 3) ) );
+//                $u->mono_schedules()->saveMany( factory( App\Models\MonoSchedule::class, mt_rand(0, 3) ) );
 //            });
 
-        factory( App\Instructor::class, $size )->create();
+        factory( App\Models\Instructor::class, $size )->create();
 
-        factory( App\Requirement::class, $size )->create();
+        factory( App\Models\Requirement::class, $size )->create();
 
-        factory( App\Course::class, $size )->create()
+        factory( App\Models\Course::class, $size )->create()
             ->each( function ($c) {
                 $c->completed_users()->attach(  get_range() );
                 $c->instructors()->sync( [get_random() => ['primary' => false],
@@ -46,13 +46,13 @@ class DatabaseSeeder extends Seeder
                                           get_random() => ['primary' => false],
                                           get_random() => ['primary' => true]] );
 
-                foreach ( factory( App\Meeting::class, 3 )->make() as $m )
+                foreach ( factory( App\Models\Meeting::class, 3 )->make() as $m )
                 {
                     $c->meetings()->save( $m );
                     $m->instructors()->attach( get_random() );
                 }
 
-                foreach ( factory( App\Review::class, rand(0, 3) )->make() as $r)
+                foreach ( factory( App\Models\Review::class, rand(0, 3) )->make() as $r)
                 {
                     $r['user_id'] = get_random();
                     $r['instructor_id'] = get_Random();
@@ -62,17 +62,17 @@ class DatabaseSeeder extends Seeder
                 }
             });
 
-        foreach ( factory( App\MonoSchedule::class, $size )->make() as $ms )
+        foreach ( factory( App\Models\MonoSchedule::class, $size )->make() as $ms )
         {
-            App\User::find( get_random() )->mono_schedules()->save( $ms );
+            App\Models\User::find( get_random() )->mono_schedules()->save( $ms );
             $ms->courses()->sync( [get_random(), get_random(), get_random()] );
             $ms->users_applied()->attach( get_range(), ['active' => false] );
             $ms->users_liked()->attach( get_range() );
         }
 
-        foreach ( factory( App\PolySchedule::class, $size )->make() as $ps )
+        foreach ( factory( App\Models\PolySchedule::class, $size )->make() as $ps )
         {
-            App\User::find( get_random() )->poly_schedules()->save( $ps );
+            App\Models\User::find( get_random() )->poly_schedules()->save( $ps );
             $ps->mono_schedules()->sync( [get_random(), get_random(), get_random()] );
             $ps->users_applied()->attach( get_range(), ['active' => false] );
             $ps->users_liked()->attach( get_range() );

@@ -36,11 +36,10 @@ return [
     ],
 
 
-
     'google' => [
         'client_id' => getenv('GOOGLE_APP_ID'),
         'client_secret' => getenv('GOOGLE_APP_SECRET'),
-        'redirect' => 'http://betterweb.dev:8000/google-auth-callback',
+        'redirect' => getenv('GOOGLE_APP_REDIRECT'),
     ],
 
 ];
