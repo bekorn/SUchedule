@@ -1,0 +1,32 @@
+// Z-levels : https://github.com/Dogfalo/materialize/blob/a6703be4b709d8b94a1c26b43a4985179acf5a75/sass/components/_global.scss
+.z-depth-0 { box-shadow: none !important; }
+.z-depth-1 { box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
+.z-depth-1-half { box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2); }
+.z-depth-2 { box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3); }
+.z-depth-3 { box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3); }
+.z-depth-4 { box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3); }
+.z-depth-5 { box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3); }
+.hoverable {
+  transition: box-shadow .25s;
+
+  &:hover {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+
+// z-depth official shadows
+// (https://www.polymer-project.org/components/paper-elements/demo.html#paper-shadow)
+@mixin z-half() { z-index: 0.5; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.32); }
+@mixin z-1() 	{ z-index: 1;	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37); }
+@mixin z-2() 	{ z-index: 2;	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2); }
+@mixin z-3() 	{ z-index: 3;	box-shadow: 0 13px 25px 0 rgba(0, 0, 0, 0.3), 0 11px 7px 0 rgba(0, 0, 0, 0.19); }
+@mixin z-4() 	{ z-index: 4;	box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3), 0 14px 12px 0 rgba(0, 0, 0, 0.17); }
+@mixin z-5() 	{ z-index: 5;	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15); }
+
+
+//	Custom Mixins
+@mixin user_select_none() {
+  -moz-user-select: none;
+  user-select: none;
+}

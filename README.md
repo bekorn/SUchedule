@@ -1,11 +1,9 @@
 #  BetterWeb Schedules
 
-#### An app that makes creating schedules easy, for SU BannerWeb.
+__An app that makes creating schedules easy, for SU BannerWeb.__
 
 :notebook_with_decorative_cover: Create your schedule for a semester. 
 
 :books: Combine multiple schedules to plan your courses over years.
 
 :busts_in_silhouette: Help others by sharing them!
-
-I still can't figure branches out...
