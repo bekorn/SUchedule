@@ -15,10 +15,7 @@ class Course extends Model
 
     public function required_courses()
     {
-        return $this->hasManyThrough(Course::class, Requirement::class,
-            'course_code', 'code', 'code');
-//        TODO: Change this to the new belongsToMany relationship coming in Laravel 5.5
-//        return $this->belongsToMany(Course::class, 'requirements', 'code', 'requirement');
+        return $this->belongsToMany(Course::class, 'requirements', 'code', 'requirement');
     }
 
     public function instructors()
