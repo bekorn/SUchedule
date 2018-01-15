@@ -9,19 +9,19 @@ class CourseController extends Controller
 {
     protected $course_repo;
 
-    public function __construct (CourseRepository $course_repository)
+    public function __construct(CourseRepository $course_repository)
     {
         $this->course_repo = $course_repository;
     }
 
-    public function show (int $id)
+    public function show(int $id)
     {
         return $this->course_repo->find($id);
     }
 
-    public function index ()
+    public function index()
     {
         $courses = $this->course_repo->with('instructors', 'meetings', 'requirements')->paginate(12);
-        return view('courses.index', ['courses' => $courses] );
+        return view('courses.index', ['courses' => $courses]);
     }
 }

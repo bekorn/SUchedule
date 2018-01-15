@@ -42,13 +42,13 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
 
-        if( Arr::get($user->user, 'domain') != 'sabanciuniv.edu' ) {
+        if (Arr::get($user->user, 'domain') != 'sabanciuniv.edu') {
             return redirect('/login')->withErrors('Invalid email domain. Only @sabanciuniv.edu users can login this system.');
         }
 
         $my_user = $this->user_repo->where('email', $user->email)->first();
 
-        if( is_null($my_user) ) {
+        if (is_null($my_user)) {
             $my_user = $this->user_repo->create([
                 'given_name' => $user->user['name']['givenName'],
                 'family_name' => $user->user['name']['familyName'],

@@ -38,7 +38,7 @@ class MonoScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,13 +55,13 @@ class MonoScheduleController extends Controller
      */
     public function show(int $id)
     {
-        return $this->mono_schedule_repo->with('users_liked', 'courses')->find( $id );
+        return $this->mono_schedule_repo->with('users_liked', 'courses')->find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MonoSchedule  $mono_schedule
+     * @param  \App\Models\MonoSchedule $mono_schedule
      * @return \Illuminate\Http\Response
      */
     public function edit(\App\Models\MonoSchedule $mono_schedule)
@@ -72,8 +72,8 @@ class MonoScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MonoSchedule  $mono_schedule
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\MonoSchedule $mono_schedule
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, \App\Models\MonoSchedule $mono_schedule)
@@ -84,7 +84,7 @@ class MonoScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MonoSchedule  $mono_schedule
+     * @param  \App\Models\MonoSchedule $mono_schedule
      * @return \Illuminate\Http\Response
      */
     public function destroy(MonoSchedule $mono_schedule)

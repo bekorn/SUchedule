@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class MeetingController extends Controller
 {
     protected $meeting_repo;
-    
+
     function __construct(MeetingRepository $meeting_repository)
     {
         $this->meeting_repo = $meeting_repository;
@@ -38,7 +38,7 @@ class MeetingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,7 +49,7 @@ class MeetingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Meeting  $meeting
+     * @param  \App\Models\Meeting $meeting
      * @return \Illuminate\Http\Response
      */
     public function show(Meeting $meeting)
@@ -60,7 +60,7 @@ class MeetingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Meeting  $meeting
+     * @param  \App\Models\Meeting $meeting
      * @return \Illuminate\Http\Response
      */
     public function edit(Meeting $meeting)
@@ -71,8 +71,8 @@ class MeetingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Meeting  $meeting
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Meeting $meeting
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Meeting $meeting)
@@ -83,7 +83,7 @@ class MeetingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Meeting  $meeting
+     * @param  \App\Models\Meeting $meeting
      * @return \Illuminate\Http\Response
      */
     public function destroy(Meeting $meeting)
